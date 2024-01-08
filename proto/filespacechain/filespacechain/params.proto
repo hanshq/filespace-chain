@@ -1,0 +1,15 @@
+syntax = "proto3";
+package filespacechain.filespacechain;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "filespacechain/x/filespacechain/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

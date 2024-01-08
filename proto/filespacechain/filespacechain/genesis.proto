@@ -1,0 +1,17 @@
+syntax = "proto3";
+package filespacechain.filespacechain;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "filespacechain/filespacechain/params.proto";
+
+option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
+
+// GenesisState defines the filespacechain module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
