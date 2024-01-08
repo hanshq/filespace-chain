@@ -14,15 +14,235 @@ import (
 	sync "sync"
 )
 
+var _ protoreflect.List = (*_GenesisState_2_list)(nil)
+
+type _GenesisState_2_list struct {
+	list *[]*FileEntry
+}
+
+func (x *_GenesisState_2_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_2_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_2_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*FileEntry)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_2_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*FileEntry)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_2_list) AppendMutable() protoreflect.Value {
+	v := new(FileEntry)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_2_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_2_list) NewElement() protoreflect.Value {
+	v := new(FileEntry)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_2_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_GenesisState_4_list)(nil)
+
+type _GenesisState_4_list struct {
+	list *[]*HostingInquiry
+}
+
+func (x *_GenesisState_4_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_4_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_4_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*HostingInquiry)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_4_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*HostingInquiry)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_4_list) AppendMutable() protoreflect.Value {
+	v := new(HostingInquiry)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_4_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_4_list) NewElement() protoreflect.Value {
+	v := new(HostingInquiry)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_4_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_GenesisState_6_list)(nil)
+
+type _GenesisState_6_list struct {
+	list *[]*HostingContract
+}
+
+func (x *_GenesisState_6_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_6_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_6_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*HostingContract)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_6_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*HostingContract)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_6_list) AppendMutable() protoreflect.Value {
+	v := new(HostingContract)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_6_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_6_list) NewElement() protoreflect.Value {
+	v := new(HostingContract)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_6_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_GenesisState_8_list)(nil)
+
+type _GenesisState_8_list struct {
+	list *[]*HostingOffer
+}
+
+func (x *_GenesisState_8_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_8_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_8_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*HostingOffer)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_8_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*HostingOffer)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_8_list) AppendMutable() protoreflect.Value {
+	v := new(HostingOffer)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_8_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_8_list) NewElement() protoreflect.Value {
+	v := new(HostingOffer)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_8_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_GenesisState        protoreflect.MessageDescriptor
-	fd_GenesisState_params protoreflect.FieldDescriptor
+	md_GenesisState                      protoreflect.MessageDescriptor
+	fd_GenesisState_params               protoreflect.FieldDescriptor
+	fd_GenesisState_fileEntryList        protoreflect.FieldDescriptor
+	fd_GenesisState_fileEntryCount       protoreflect.FieldDescriptor
+	fd_GenesisState_hostingInquiryList   protoreflect.FieldDescriptor
+	fd_GenesisState_hostingInquiryCount  protoreflect.FieldDescriptor
+	fd_GenesisState_hostingContractList  protoreflect.FieldDescriptor
+	fd_GenesisState_hostingContractCount protoreflect.FieldDescriptor
+	fd_GenesisState_hostingOfferList     protoreflect.FieldDescriptor
+	fd_GenesisState_hostingOfferCount    protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_filespacechain_filespacechain_genesis_proto_init()
 	md_GenesisState = File_filespacechain_filespacechain_genesis_proto.Messages().ByName("GenesisState")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
+	fd_GenesisState_fileEntryList = md_GenesisState.Fields().ByName("fileEntryList")
+	fd_GenesisState_fileEntryCount = md_GenesisState.Fields().ByName("fileEntryCount")
+	fd_GenesisState_hostingInquiryList = md_GenesisState.Fields().ByName("hostingInquiryList")
+	fd_GenesisState_hostingInquiryCount = md_GenesisState.Fields().ByName("hostingInquiryCount")
+	fd_GenesisState_hostingContractList = md_GenesisState.Fields().ByName("hostingContractList")
+	fd_GenesisState_hostingContractCount = md_GenesisState.Fields().ByName("hostingContractCount")
+	fd_GenesisState_hostingOfferList = md_GenesisState.Fields().ByName("hostingOfferList")
+	fd_GenesisState_hostingOfferCount = md_GenesisState.Fields().ByName("hostingOfferCount")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -96,6 +316,54 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
+	if len(x.FileEntryList) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.FileEntryList})
+		if !f(fd_GenesisState_fileEntryList, value) {
+			return
+		}
+	}
+	if x.FileEntryCount != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.FileEntryCount)
+		if !f(fd_GenesisState_fileEntryCount, value) {
+			return
+		}
+	}
+	if len(x.HostingInquiryList) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_4_list{list: &x.HostingInquiryList})
+		if !f(fd_GenesisState_hostingInquiryList, value) {
+			return
+		}
+	}
+	if x.HostingInquiryCount != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.HostingInquiryCount)
+		if !f(fd_GenesisState_hostingInquiryCount, value) {
+			return
+		}
+	}
+	if len(x.HostingContractList) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_6_list{list: &x.HostingContractList})
+		if !f(fd_GenesisState_hostingContractList, value) {
+			return
+		}
+	}
+	if x.HostingContractCount != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.HostingContractCount)
+		if !f(fd_GenesisState_hostingContractCount, value) {
+			return
+		}
+	}
+	if len(x.HostingOfferList) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_8_list{list: &x.HostingOfferList})
+		if !f(fd_GenesisState_hostingOfferList, value) {
+			return
+		}
+	}
+	if x.HostingOfferCount != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.HostingOfferCount)
+		if !f(fd_GenesisState_hostingOfferCount, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -113,6 +381,22 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 	switch fd.FullName() {
 	case "filespacechain.filespacechain.GenesisState.params":
 		return x.Params != nil
+	case "filespacechain.filespacechain.GenesisState.fileEntryList":
+		return len(x.FileEntryList) != 0
+	case "filespacechain.filespacechain.GenesisState.fileEntryCount":
+		return x.FileEntryCount != uint64(0)
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryList":
+		return len(x.HostingInquiryList) != 0
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryCount":
+		return x.HostingInquiryCount != uint64(0)
+	case "filespacechain.filespacechain.GenesisState.hostingContractList":
+		return len(x.HostingContractList) != 0
+	case "filespacechain.filespacechain.GenesisState.hostingContractCount":
+		return x.HostingContractCount != uint64(0)
+	case "filespacechain.filespacechain.GenesisState.hostingOfferList":
+		return len(x.HostingOfferList) != 0
+	case "filespacechain.filespacechain.GenesisState.hostingOfferCount":
+		return x.HostingOfferCount != uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: filespacechain.filespacechain.GenesisState"))
@@ -131,6 +415,22 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "filespacechain.filespacechain.GenesisState.params":
 		x.Params = nil
+	case "filespacechain.filespacechain.GenesisState.fileEntryList":
+		x.FileEntryList = nil
+	case "filespacechain.filespacechain.GenesisState.fileEntryCount":
+		x.FileEntryCount = uint64(0)
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryList":
+		x.HostingInquiryList = nil
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryCount":
+		x.HostingInquiryCount = uint64(0)
+	case "filespacechain.filespacechain.GenesisState.hostingContractList":
+		x.HostingContractList = nil
+	case "filespacechain.filespacechain.GenesisState.hostingContractCount":
+		x.HostingContractCount = uint64(0)
+	case "filespacechain.filespacechain.GenesisState.hostingOfferList":
+		x.HostingOfferList = nil
+	case "filespacechain.filespacechain.GenesisState.hostingOfferCount":
+		x.HostingOfferCount = uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: filespacechain.filespacechain.GenesisState"))
@@ -150,6 +450,42 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "filespacechain.filespacechain.GenesisState.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "filespacechain.filespacechain.GenesisState.fileEntryList":
+		if len(x.FileEntryList) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_2_list{})
+		}
+		listValue := &_GenesisState_2_list{list: &x.FileEntryList}
+		return protoreflect.ValueOfList(listValue)
+	case "filespacechain.filespacechain.GenesisState.fileEntryCount":
+		value := x.FileEntryCount
+		return protoreflect.ValueOfUint64(value)
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryList":
+		if len(x.HostingInquiryList) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_4_list{})
+		}
+		listValue := &_GenesisState_4_list{list: &x.HostingInquiryList}
+		return protoreflect.ValueOfList(listValue)
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryCount":
+		value := x.HostingInquiryCount
+		return protoreflect.ValueOfUint64(value)
+	case "filespacechain.filespacechain.GenesisState.hostingContractList":
+		if len(x.HostingContractList) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_6_list{})
+		}
+		listValue := &_GenesisState_6_list{list: &x.HostingContractList}
+		return protoreflect.ValueOfList(listValue)
+	case "filespacechain.filespacechain.GenesisState.hostingContractCount":
+		value := x.HostingContractCount
+		return protoreflect.ValueOfUint64(value)
+	case "filespacechain.filespacechain.GenesisState.hostingOfferList":
+		if len(x.HostingOfferList) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_8_list{})
+		}
+		listValue := &_GenesisState_8_list{list: &x.HostingOfferList}
+		return protoreflect.ValueOfList(listValue)
+	case "filespacechain.filespacechain.GenesisState.hostingOfferCount":
+		value := x.HostingOfferCount
+		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: filespacechain.filespacechain.GenesisState"))
@@ -172,6 +508,30 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 	switch fd.FullName() {
 	case "filespacechain.filespacechain.GenesisState.params":
 		x.Params = value.Message().Interface().(*Params)
+	case "filespacechain.filespacechain.GenesisState.fileEntryList":
+		lv := value.List()
+		clv := lv.(*_GenesisState_2_list)
+		x.FileEntryList = *clv.list
+	case "filespacechain.filespacechain.GenesisState.fileEntryCount":
+		x.FileEntryCount = value.Uint()
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryList":
+		lv := value.List()
+		clv := lv.(*_GenesisState_4_list)
+		x.HostingInquiryList = *clv.list
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryCount":
+		x.HostingInquiryCount = value.Uint()
+	case "filespacechain.filespacechain.GenesisState.hostingContractList":
+		lv := value.List()
+		clv := lv.(*_GenesisState_6_list)
+		x.HostingContractList = *clv.list
+	case "filespacechain.filespacechain.GenesisState.hostingContractCount":
+		x.HostingContractCount = value.Uint()
+	case "filespacechain.filespacechain.GenesisState.hostingOfferList":
+		lv := value.List()
+		clv := lv.(*_GenesisState_8_list)
+		x.HostingOfferList = *clv.list
+	case "filespacechain.filespacechain.GenesisState.hostingOfferCount":
+		x.HostingOfferCount = value.Uint()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: filespacechain.filespacechain.GenesisState"))
@@ -197,6 +557,38 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
+	case "filespacechain.filespacechain.GenesisState.fileEntryList":
+		if x.FileEntryList == nil {
+			x.FileEntryList = []*FileEntry{}
+		}
+		value := &_GenesisState_2_list{list: &x.FileEntryList}
+		return protoreflect.ValueOfList(value)
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryList":
+		if x.HostingInquiryList == nil {
+			x.HostingInquiryList = []*HostingInquiry{}
+		}
+		value := &_GenesisState_4_list{list: &x.HostingInquiryList}
+		return protoreflect.ValueOfList(value)
+	case "filespacechain.filespacechain.GenesisState.hostingContractList":
+		if x.HostingContractList == nil {
+			x.HostingContractList = []*HostingContract{}
+		}
+		value := &_GenesisState_6_list{list: &x.HostingContractList}
+		return protoreflect.ValueOfList(value)
+	case "filespacechain.filespacechain.GenesisState.hostingOfferList":
+		if x.HostingOfferList == nil {
+			x.HostingOfferList = []*HostingOffer{}
+		}
+		value := &_GenesisState_8_list{list: &x.HostingOfferList}
+		return protoreflect.ValueOfList(value)
+	case "filespacechain.filespacechain.GenesisState.fileEntryCount":
+		panic(fmt.Errorf("field fileEntryCount of message filespacechain.filespacechain.GenesisState is not mutable"))
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryCount":
+		panic(fmt.Errorf("field hostingInquiryCount of message filespacechain.filespacechain.GenesisState is not mutable"))
+	case "filespacechain.filespacechain.GenesisState.hostingContractCount":
+		panic(fmt.Errorf("field hostingContractCount of message filespacechain.filespacechain.GenesisState is not mutable"))
+	case "filespacechain.filespacechain.GenesisState.hostingOfferCount":
+		panic(fmt.Errorf("field hostingOfferCount of message filespacechain.filespacechain.GenesisState is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: filespacechain.filespacechain.GenesisState"))
@@ -213,6 +605,26 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 	case "filespacechain.filespacechain.GenesisState.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "filespacechain.filespacechain.GenesisState.fileEntryList":
+		list := []*FileEntry{}
+		return protoreflect.ValueOfList(&_GenesisState_2_list{list: &list})
+	case "filespacechain.filespacechain.GenesisState.fileEntryCount":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryList":
+		list := []*HostingInquiry{}
+		return protoreflect.ValueOfList(&_GenesisState_4_list{list: &list})
+	case "filespacechain.filespacechain.GenesisState.hostingInquiryCount":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "filespacechain.filespacechain.GenesisState.hostingContractList":
+		list := []*HostingContract{}
+		return protoreflect.ValueOfList(&_GenesisState_6_list{list: &list})
+	case "filespacechain.filespacechain.GenesisState.hostingContractCount":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "filespacechain.filespacechain.GenesisState.hostingOfferList":
+		list := []*HostingOffer{}
+		return protoreflect.ValueOfList(&_GenesisState_8_list{list: &list})
+	case "filespacechain.filespacechain.GenesisState.hostingOfferCount":
+		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: filespacechain.filespacechain.GenesisState"))
@@ -286,6 +698,42 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.Params)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.FileEntryList) > 0 {
+			for _, e := range x.FileEntryList {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.FileEntryCount != 0 {
+			n += 1 + runtime.Sov(uint64(x.FileEntryCount))
+		}
+		if len(x.HostingInquiryList) > 0 {
+			for _, e := range x.HostingInquiryList {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.HostingInquiryCount != 0 {
+			n += 1 + runtime.Sov(uint64(x.HostingInquiryCount))
+		}
+		if len(x.HostingContractList) > 0 {
+			for _, e := range x.HostingContractList {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.HostingContractCount != 0 {
+			n += 1 + runtime.Sov(uint64(x.HostingContractCount))
+		}
+		if len(x.HostingOfferList) > 0 {
+			for _, e := range x.HostingOfferList {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.HostingOfferCount != 0 {
+			n += 1 + runtime.Sov(uint64(x.HostingOfferCount))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -314,6 +762,90 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.HostingOfferCount != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.HostingOfferCount))
+			i--
+			dAtA[i] = 0x48
+		}
+		if len(x.HostingOfferList) > 0 {
+			for iNdEx := len(x.HostingOfferList) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.HostingOfferList[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x42
+			}
+		}
+		if x.HostingContractCount != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.HostingContractCount))
+			i--
+			dAtA[i] = 0x38
+		}
+		if len(x.HostingContractList) > 0 {
+			for iNdEx := len(x.HostingContractList) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.HostingContractList[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x32
+			}
+		}
+		if x.HostingInquiryCount != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.HostingInquiryCount))
+			i--
+			dAtA[i] = 0x28
+		}
+		if len(x.HostingInquiryList) > 0 {
+			for iNdEx := len(x.HostingInquiryList) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.HostingInquiryList[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x22
+			}
+		}
+		if x.FileEntryCount != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.FileEntryCount))
+			i--
+			dAtA[i] = 0x18
+		}
+		if len(x.FileEntryList) > 0 {
+			for iNdEx := len(x.FileEntryList) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.FileEntryList[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
+			}
 		}
 		if x.Params != nil {
 			encoded, err := options.Marshal(x.Params)
@@ -414,6 +946,218 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field FileEntryList", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.FileEntryList = append(x.FileEntryList, &FileEntry{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.FileEntryList[len(x.FileEntryList)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 3:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field FileEntryCount", wireType)
+				}
+				x.FileEntryCount = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.FileEntryCount |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostingInquiryList", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.HostingInquiryList = append(x.HostingInquiryList, &HostingInquiry{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.HostingInquiryList[len(x.HostingInquiryList)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 5:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostingInquiryCount", wireType)
+				}
+				x.HostingInquiryCount = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.HostingInquiryCount |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostingContractList", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.HostingContractList = append(x.HostingContractList, &HostingContract{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.HostingContractList[len(x.HostingContractList)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 7:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostingContractCount", wireType)
+				}
+				x.HostingContractCount = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.HostingContractCount |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostingOfferList", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.HostingOfferList = append(x.HostingOfferList, &HostingOffer{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.HostingOfferList[len(x.HostingOfferList)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 9:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field HostingOfferCount", wireType)
+				}
+				x.HostingOfferCount = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.HostingOfferCount |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -469,7 +1213,15 @@ type GenesisState struct {
 	unknownFields protoimpl.UnknownFields
 
 	// params defines all the parameters of the module.
-	Params *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	Params               *Params            `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	FileEntryList        []*FileEntry       `protobuf:"bytes,2,rep,name=fileEntryList,proto3" json:"fileEntryList,omitempty"`
+	FileEntryCount       uint64             `protobuf:"varint,3,opt,name=fileEntryCount,proto3" json:"fileEntryCount,omitempty"`
+	HostingInquiryList   []*HostingInquiry  `protobuf:"bytes,4,rep,name=hostingInquiryList,proto3" json:"hostingInquiryList,omitempty"`
+	HostingInquiryCount  uint64             `protobuf:"varint,5,opt,name=hostingInquiryCount,proto3" json:"hostingInquiryCount,omitempty"`
+	HostingContractList  []*HostingContract `protobuf:"bytes,6,rep,name=hostingContractList,proto3" json:"hostingContractList,omitempty"`
+	HostingContractCount uint64             `protobuf:"varint,7,opt,name=hostingContractCount,proto3" json:"hostingContractCount,omitempty"`
+	HostingOfferList     []*HostingOffer    `protobuf:"bytes,8,rep,name=hostingOfferList,proto3" json:"hostingOfferList,omitempty"`
+	HostingOfferCount    uint64             `protobuf:"varint,9,opt,name=hostingOfferCount,proto3" json:"hostingOfferCount,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -499,6 +1251,62 @@ func (x *GenesisState) GetParams() *Params {
 	return nil
 }
 
+func (x *GenesisState) GetFileEntryList() []*FileEntry {
+	if x != nil {
+		return x.FileEntryList
+	}
+	return nil
+}
+
+func (x *GenesisState) GetFileEntryCount() uint64 {
+	if x != nil {
+		return x.FileEntryCount
+	}
+	return 0
+}
+
+func (x *GenesisState) GetHostingInquiryList() []*HostingInquiry {
+	if x != nil {
+		return x.HostingInquiryList
+	}
+	return nil
+}
+
+func (x *GenesisState) GetHostingInquiryCount() uint64 {
+	if x != nil {
+		return x.HostingInquiryCount
+	}
+	return 0
+}
+
+func (x *GenesisState) GetHostingContractList() []*HostingContract {
+	if x != nil {
+		return x.HostingContractList
+	}
+	return nil
+}
+
+func (x *GenesisState) GetHostingContractCount() uint64 {
+	if x != nil {
+		return x.HostingContractCount
+	}
+	return 0
+}
+
+func (x *GenesisState) GetHostingOfferList() []*HostingOffer {
+	if x != nil {
+		return x.HostingOfferList
+	}
+	return nil
+}
+
+func (x *GenesisState) GetHostingOfferCount() uint64 {
+	if x != nil {
+		return x.HostingOfferCount
+	}
+	return 0
+}
+
 var File_filespacechain_filespacechain_genesis_proto protoreflect.FileDescriptor
 
 var file_filespacechain_filespacechain_genesis_proto_rawDesc = []byte{
@@ -512,28 +1320,77 @@ var file_filespacechain_filespacechain_genesis_proto_rawDesc = []byte{
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2a, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
 	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
 	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0x58, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74,
-	0x65, 0x12, 0x48, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x25, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61,
+	0x6f, 0x1a, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x65, 0x6e, 0x74, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x33, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2f, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x69, 0x6e, 0x71, 0x75, 0x69, 0x72, 0x79,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x34, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63,
+	0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x31, 0x66, 0x69,
+	0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x66, 0x69, 0x6c,
+	0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x68, 0x6f, 0x73, 0x74,
+	0x69, 0x6e, 0x67, 0x5f, 0x6f, 0x66, 0x66, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
+	0x96, 0x05, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65,
+	0x12, 0x48, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x25, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0,
+	0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x54, 0x0a, 0x0d, 0x66, 0x69,
+	0x6c, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x28, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61,
 	0x69, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7,
-	0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0xf6, 0x01, 0x0a, 0x21,
-	0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
-	0x01, 0x5a, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f,
-	0x61, 0x70, 0x69, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0xa2, 0x02, 0x03, 0x46, 0x46, 0x58, 0xaa, 0x02, 0x1d, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70,
-	0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61,
-	0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0xca, 0x02, 0x1d, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70,
-	0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61,
-	0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0xe2, 0x02, 0x29, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70,
-	0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61,
-	0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
-	0x61, 0x74, 0x61, 0xea, 0x02, 0x1e, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f,
+	0x00, 0x52, 0x0d, 0x66, 0x69, 0x6c, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74,
+	0x12, 0x26, 0x0a, 0x0e, 0x66, 0x69, 0x6c, 0x65, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x43, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0e, 0x66, 0x69, 0x6c, 0x65, 0x45, 0x6e,
+	0x74, 0x72, 0x79, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x63, 0x0a, 0x12, 0x68, 0x6f, 0x73, 0x74,
+	0x69, 0x6e, 0x67, 0x49, 0x6e, 0x71, 0x75, 0x69, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x04,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x48, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x49, 0x6e, 0x71, 0x75,
+	0x69, 0x72, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x12, 0x68, 0x6f, 0x73, 0x74, 0x69,
+	0x6e, 0x67, 0x49, 0x6e, 0x71, 0x75, 0x69, 0x72, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x30, 0x0a,
+	0x13, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x49, 0x6e, 0x71, 0x75, 0x69, 0x72, 0x79, 0x43,
+	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x04, 0x52, 0x13, 0x68, 0x6f, 0x73, 0x74,
+	0x69, 0x6e, 0x67, 0x49, 0x6e, 0x71, 0x75, 0x69, 0x72, 0x79, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12,
+	0x66, 0x0a, 0x13, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61,
+	0x63, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x06, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x66,
+	0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x66, 0x69,
+	0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x48, 0x6f, 0x73,
+	0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x04, 0xc8, 0xde,
+	0x1f, 0x00, 0x52, 0x13, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x32, 0x0a, 0x14, 0x68, 0x6f, 0x73, 0x74, 0x69,
+	0x6e, 0x67, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x04, 0x52, 0x14, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x5d, 0x0a, 0x10, 0x68,
+	0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x4f, 0x66, 0x66, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x18,
+	0x08, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63,
+	0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x48, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x4f, 0x66, 0x66,
+	0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x10, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e,
+	0x67, 0x4f, 0x66, 0x66, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x68, 0x6f,
+	0x73, 0x74, 0x69, 0x6e, 0x67, 0x4f, 0x66, 0x66, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18,
+	0x09, 0x20, 0x01, 0x28, 0x04, 0x52, 0x11, 0x68, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67, 0x4f, 0x66,
+	0x66, 0x65, 0x72, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0xf6, 0x01, 0x0a, 0x21, 0x63, 0x6f, 0x6d,
+	0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x42, 0x0c,
+	0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2e,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69,
+	0x2f, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
+	0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69, 0x6e, 0xa2, 0x02,
+	0x03, 0x46, 0x46, 0x58, 0xaa, 0x02, 0x1d, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0xca, 0x02, 0x1d, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0xe2, 0x02, 0x29, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0xea, 0x02, 0x1e, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x3a, 0x3a, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -550,16 +1407,24 @@ func file_filespacechain_filespacechain_genesis_proto_rawDescGZIP() []byte {
 
 var file_filespacechain_filespacechain_genesis_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_filespacechain_filespacechain_genesis_proto_goTypes = []interface{}{
-	(*GenesisState)(nil), // 0: filespacechain.filespacechain.GenesisState
-	(*Params)(nil),       // 1: filespacechain.filespacechain.Params
+	(*GenesisState)(nil),    // 0: filespacechain.filespacechain.GenesisState
+	(*Params)(nil),          // 1: filespacechain.filespacechain.Params
+	(*FileEntry)(nil),       // 2: filespacechain.filespacechain.FileEntry
+	(*HostingInquiry)(nil),  // 3: filespacechain.filespacechain.HostingInquiry
+	(*HostingContract)(nil), // 4: filespacechain.filespacechain.HostingContract
+	(*HostingOffer)(nil),    // 5: filespacechain.filespacechain.HostingOffer
 }
 var file_filespacechain_filespacechain_genesis_proto_depIdxs = []int32{
 	1, // 0: filespacechain.filespacechain.GenesisState.params:type_name -> filespacechain.filespacechain.Params
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: filespacechain.filespacechain.GenesisState.fileEntryList:type_name -> filespacechain.filespacechain.FileEntry
+	3, // 2: filespacechain.filespacechain.GenesisState.hostingInquiryList:type_name -> filespacechain.filespacechain.HostingInquiry
+	4, // 3: filespacechain.filespacechain.GenesisState.hostingContractList:type_name -> filespacechain.filespacechain.HostingContract
+	5, // 4: filespacechain.filespacechain.GenesisState.hostingOfferList:type_name -> filespacechain.filespacechain.HostingOffer
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_filespacechain_filespacechain_genesis_proto_init() }
@@ -568,6 +1433,10 @@ func file_filespacechain_filespacechain_genesis_proto_init() {
 		return
 	}
 	file_filespacechain_filespacechain_params_proto_init()
+	file_filespacechain_filespacechain_file_entry_proto_init()
+	file_filespacechain_filespacechain_hosting_inquiry_proto_init()
+	file_filespacechain_filespacechain_hosting_contract_proto_init()
+	file_filespacechain_filespacechain_hosting_offer_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_filespacechain_filespacechain_genesis_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenesisState); i {

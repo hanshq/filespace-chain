@@ -49,3 +49,12 @@ curl https://get.ignite.com/hanshq/filespace-chain@latest! | sudo bash
 - [Ignite CLI docs](https://docs.ignite.com)
 - [Cosmos SDK docs](https://docs.cosmos.network)
 - [Developer Chat](https://discord.gg/ignite)
+
+
+## Accounts
+
+✔ Added account alice with address cosmos1hvskpm38vwk63524garu3dzkjs82zjj2fhs5f0 and mnemonic:
+model minor arena van orient hundred scatter mass ecology cushion room able price tomato emotion scare fancy exit social donkey advance uncover black poem
+
+✔ Added account bob with address cosmos1f99zm9j4xv577lwx7ejx5uqqyn50vcr2z9sess and mnemonic:
+garden immune receive term rude enable curtain federal manage globe fence since banana choose expand toss disease castle close earth orphan surface endless refuse

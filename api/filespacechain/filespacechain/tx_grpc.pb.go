@@ -19,7 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName = "/filespacechain.filespacechain.Msg/UpdateParams"
+	Msg_UpdateParams_FullMethodName          = "/filespacechain.filespacechain.Msg/UpdateParams"
+	Msg_CreateFileEntry_FullMethodName       = "/filespacechain.filespacechain.Msg/CreateFileEntry"
+	Msg_UpdateFileEntry_FullMethodName       = "/filespacechain.filespacechain.Msg/UpdateFileEntry"
+	Msg_DeleteFileEntry_FullMethodName       = "/filespacechain.filespacechain.Msg/DeleteFileEntry"
+	Msg_CreateHostingInquiry_FullMethodName  = "/filespacechain.filespacechain.Msg/CreateHostingInquiry"
+	Msg_UpdateHostingInquiry_FullMethodName  = "/filespacechain.filespacechain.Msg/UpdateHostingInquiry"
+	Msg_DeleteHostingInquiry_FullMethodName  = "/filespacechain.filespacechain.Msg/DeleteHostingInquiry"
+	Msg_CreateHostingContract_FullMethodName = "/filespacechain.filespacechain.Msg/CreateHostingContract"
+	Msg_UpdateHostingContract_FullMethodName = "/filespacechain.filespacechain.Msg/UpdateHostingContract"
+	Msg_DeleteHostingContract_FullMethodName = "/filespacechain.filespacechain.Msg/DeleteHostingContract"
+	Msg_CreateHostingOffer_FullMethodName    = "/filespacechain.filespacechain.Msg/CreateHostingOffer"
+	Msg_UpdateHostingOffer_FullMethodName    = "/filespacechain.filespacechain.Msg/UpdateHostingOffer"
+	Msg_DeleteHostingOffer_FullMethodName    = "/filespacechain.filespacechain.Msg/DeleteHostingOffer"
 )
 
 // MsgClient is the client API for Msg service.
@@ -29,6 +41,18 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateFileEntry(ctx context.Context, in *MsgCreateFileEntry, opts ...grpc.CallOption) (*MsgCreateFileEntryResponse, error)
+	UpdateFileEntry(ctx context.Context, in *MsgUpdateFileEntry, opts ...grpc.CallOption) (*MsgUpdateFileEntryResponse, error)
+	DeleteFileEntry(ctx context.Context, in *MsgDeleteFileEntry, opts ...grpc.CallOption) (*MsgDeleteFileEntryResponse, error)
+	CreateHostingInquiry(ctx context.Context, in *MsgCreateHostingInquiry, opts ...grpc.CallOption) (*MsgCreateHostingInquiryResponse, error)
+	UpdateHostingInquiry(ctx context.Context, in *MsgUpdateHostingInquiry, opts ...grpc.CallOption) (*MsgUpdateHostingInquiryResponse, error)
+	DeleteHostingInquiry(ctx context.Context, in *MsgDeleteHostingInquiry, opts ...grpc.CallOption) (*MsgDeleteHostingInquiryResponse, error)
+	CreateHostingContract(ctx context.Context, in *MsgCreateHostingContract, opts ...grpc.CallOption) (*MsgCreateHostingContractResponse, error)
+	UpdateHostingContract(ctx context.Context, in *MsgUpdateHostingContract, opts ...grpc.CallOption) (*MsgUpdateHostingContractResponse, error)
+	DeleteHostingContract(ctx context.Context, in *MsgDeleteHostingContract, opts ...grpc.CallOption) (*MsgDeleteHostingContractResponse, error)
+	CreateHostingOffer(ctx context.Context, in *MsgCreateHostingOffer, opts ...grpc.CallOption) (*MsgCreateHostingOfferResponse, error)
+	UpdateHostingOffer(ctx context.Context, in *MsgUpdateHostingOffer, opts ...grpc.CallOption) (*MsgUpdateHostingOfferResponse, error)
+	DeleteHostingOffer(ctx context.Context, in *MsgDeleteHostingOffer, opts ...grpc.CallOption) (*MsgDeleteHostingOfferResponse, error)
 }
 
 type msgClient struct {
@@ -48,6 +72,114 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreateFileEntry(ctx context.Context, in *MsgCreateFileEntry, opts ...grpc.CallOption) (*MsgCreateFileEntryResponse, error) {
+	out := new(MsgCreateFileEntryResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateFileEntry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateFileEntry(ctx context.Context, in *MsgUpdateFileEntry, opts ...grpc.CallOption) (*MsgUpdateFileEntryResponse, error) {
+	out := new(MsgUpdateFileEntryResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateFileEntry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteFileEntry(ctx context.Context, in *MsgDeleteFileEntry, opts ...grpc.CallOption) (*MsgDeleteFileEntryResponse, error) {
+	out := new(MsgDeleteFileEntryResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteFileEntry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) CreateHostingInquiry(ctx context.Context, in *MsgCreateHostingInquiry, opts ...grpc.CallOption) (*MsgCreateHostingInquiryResponse, error) {
+	out := new(MsgCreateHostingInquiryResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateHostingInquiry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateHostingInquiry(ctx context.Context, in *MsgUpdateHostingInquiry, opts ...grpc.CallOption) (*MsgUpdateHostingInquiryResponse, error) {
+	out := new(MsgUpdateHostingInquiryResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateHostingInquiry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteHostingInquiry(ctx context.Context, in *MsgDeleteHostingInquiry, opts ...grpc.CallOption) (*MsgDeleteHostingInquiryResponse, error) {
+	out := new(MsgDeleteHostingInquiryResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteHostingInquiry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) CreateHostingContract(ctx context.Context, in *MsgCreateHostingContract, opts ...grpc.CallOption) (*MsgCreateHostingContractResponse, error) {
+	out := new(MsgCreateHostingContractResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateHostingContract_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateHostingContract(ctx context.Context, in *MsgUpdateHostingContract, opts ...grpc.CallOption) (*MsgUpdateHostingContractResponse, error) {
+	out := new(MsgUpdateHostingContractResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateHostingContract_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteHostingContract(ctx context.Context, in *MsgDeleteHostingContract, opts ...grpc.CallOption) (*MsgDeleteHostingContractResponse, error) {
+	out := new(MsgDeleteHostingContractResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteHostingContract_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) CreateHostingOffer(ctx context.Context, in *MsgCreateHostingOffer, opts ...grpc.CallOption) (*MsgCreateHostingOfferResponse, error) {
+	out := new(MsgCreateHostingOfferResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateHostingOffer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateHostingOffer(ctx context.Context, in *MsgUpdateHostingOffer, opts ...grpc.CallOption) (*MsgUpdateHostingOfferResponse, error) {
+	out := new(MsgUpdateHostingOfferResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateHostingOffer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteHostingOffer(ctx context.Context, in *MsgDeleteHostingOffer, opts ...grpc.CallOption) (*MsgDeleteHostingOfferResponse, error) {
+	out := new(MsgDeleteHostingOfferResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteHostingOffer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -55,6 +187,18 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateFileEntry(context.Context, *MsgCreateFileEntry) (*MsgCreateFileEntryResponse, error)
+	UpdateFileEntry(context.Context, *MsgUpdateFileEntry) (*MsgUpdateFileEntryResponse, error)
+	DeleteFileEntry(context.Context, *MsgDeleteFileEntry) (*MsgDeleteFileEntryResponse, error)
+	CreateHostingInquiry(context.Context, *MsgCreateHostingInquiry) (*MsgCreateHostingInquiryResponse, error)
+	UpdateHostingInquiry(context.Context, *MsgUpdateHostingInquiry) (*MsgUpdateHostingInquiryResponse, error)
+	DeleteHostingInquiry(context.Context, *MsgDeleteHostingInquiry) (*MsgDeleteHostingInquiryResponse, error)
+	CreateHostingContract(context.Context, *MsgCreateHostingContract) (*MsgCreateHostingContractResponse, error)
+	UpdateHostingContract(context.Context, *MsgUpdateHostingContract) (*MsgUpdateHostingContractResponse, error)
+	DeleteHostingContract(context.Context, *MsgDeleteHostingContract) (*MsgDeleteHostingContractResponse, error)
+	CreateHostingOffer(context.Context, *MsgCreateHostingOffer) (*MsgCreateHostingOfferResponse, error)
+	UpdateHostingOffer(context.Context, *MsgUpdateHostingOffer) (*MsgUpdateHostingOfferResponse, error)
+	DeleteHostingOffer(context.Context, *MsgDeleteHostingOffer) (*MsgDeleteHostingOfferResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -64,6 +208,42 @@ type UnimplementedMsgServer struct {
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (UnimplementedMsgServer) CreateFileEntry(context.Context, *MsgCreateFileEntry) (*MsgCreateFileEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFileEntry not implemented")
+}
+func (UnimplementedMsgServer) UpdateFileEntry(context.Context, *MsgUpdateFileEntry) (*MsgUpdateFileEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateFileEntry not implemented")
+}
+func (UnimplementedMsgServer) DeleteFileEntry(context.Context, *MsgDeleteFileEntry) (*MsgDeleteFileEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFileEntry not implemented")
+}
+func (UnimplementedMsgServer) CreateHostingInquiry(context.Context, *MsgCreateHostingInquiry) (*MsgCreateHostingInquiryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHostingInquiry not implemented")
+}
+func (UnimplementedMsgServer) UpdateHostingInquiry(context.Context, *MsgUpdateHostingInquiry) (*MsgUpdateHostingInquiryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHostingInquiry not implemented")
+}
+func (UnimplementedMsgServer) DeleteHostingInquiry(context.Context, *MsgDeleteHostingInquiry) (*MsgDeleteHostingInquiryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteHostingInquiry not implemented")
+}
+func (UnimplementedMsgServer) CreateHostingContract(context.Context, *MsgCreateHostingContract) (*MsgCreateHostingContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHostingContract not implemented")
+}
+func (UnimplementedMsgServer) UpdateHostingContract(context.Context, *MsgUpdateHostingContract) (*MsgUpdateHostingContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHostingContract not implemented")
+}
+func (UnimplementedMsgServer) DeleteHostingContract(context.Context, *MsgDeleteHostingContract) (*MsgDeleteHostingContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteHostingContract not implemented")
+}
+func (UnimplementedMsgServer) CreateHostingOffer(context.Context, *MsgCreateHostingOffer) (*MsgCreateHostingOfferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateHostingOffer not implemented")
+}
+func (UnimplementedMsgServer) UpdateHostingOffer(context.Context, *MsgUpdateHostingOffer) (*MsgUpdateHostingOfferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateHostingOffer not implemented")
+}
+func (UnimplementedMsgServer) DeleteHostingOffer(context.Context, *MsgDeleteHostingOffer) (*MsgDeleteHostingOfferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteHostingOffer not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -96,6 +276,222 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateFileEntry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateFileEntry)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateFileEntry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateFileEntry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateFileEntry(ctx, req.(*MsgCreateFileEntry))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateFileEntry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateFileEntry)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateFileEntry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateFileEntry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateFileEntry(ctx, req.(*MsgUpdateFileEntry))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteFileEntry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteFileEntry)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteFileEntry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteFileEntry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteFileEntry(ctx, req.(*MsgDeleteFileEntry))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_CreateHostingInquiry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateHostingInquiry)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateHostingInquiry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateHostingInquiry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateHostingInquiry(ctx, req.(*MsgCreateHostingInquiry))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateHostingInquiry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateHostingInquiry)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateHostingInquiry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateHostingInquiry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateHostingInquiry(ctx, req.(*MsgUpdateHostingInquiry))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteHostingInquiry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteHostingInquiry)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteHostingInquiry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteHostingInquiry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteHostingInquiry(ctx, req.(*MsgDeleteHostingInquiry))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_CreateHostingContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateHostingContract)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateHostingContract(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateHostingContract_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateHostingContract(ctx, req.(*MsgCreateHostingContract))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateHostingContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateHostingContract)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateHostingContract(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateHostingContract_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateHostingContract(ctx, req.(*MsgUpdateHostingContract))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteHostingContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteHostingContract)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteHostingContract(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteHostingContract_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteHostingContract(ctx, req.(*MsgDeleteHostingContract))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_CreateHostingOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateHostingOffer)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateHostingOffer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateHostingOffer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateHostingOffer(ctx, req.(*MsgCreateHostingOffer))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateHostingOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateHostingOffer)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateHostingOffer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateHostingOffer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateHostingOffer(ctx, req.(*MsgUpdateHostingOffer))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteHostingOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteHostingOffer)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteHostingOffer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteHostingOffer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteHostingOffer(ctx, req.(*MsgDeleteHostingOffer))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -106,6 +502,54 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreateFileEntry",
+			Handler:    _Msg_CreateFileEntry_Handler,
+		},
+		{
+			MethodName: "UpdateFileEntry",
+			Handler:    _Msg_UpdateFileEntry_Handler,
+		},
+		{
+			MethodName: "DeleteFileEntry",
+			Handler:    _Msg_DeleteFileEntry_Handler,
+		},
+		{
+			MethodName: "CreateHostingInquiry",
+			Handler:    _Msg_CreateHostingInquiry_Handler,
+		},
+		{
+			MethodName: "UpdateHostingInquiry",
+			Handler:    _Msg_UpdateHostingInquiry_Handler,
+		},
+		{
+			MethodName: "DeleteHostingInquiry",
+			Handler:    _Msg_DeleteHostingInquiry_Handler,
+		},
+		{
+			MethodName: "CreateHostingContract",
+			Handler:    _Msg_CreateHostingContract_Handler,
+		},
+		{
+			MethodName: "UpdateHostingContract",
+			Handler:    _Msg_UpdateHostingContract_Handler,
+		},
+		{
+			MethodName: "DeleteHostingContract",
+			Handler:    _Msg_DeleteHostingContract_Handler,
+		},
+		{
+			MethodName: "CreateHostingOffer",
+			Handler:    _Msg_CreateHostingOffer_Handler,
+		},
+		{
+			MethodName: "UpdateHostingOffer",
+			Handler:    _Msg_UpdateHostingOffer_Handler,
+		},
+		{
+			MethodName: "DeleteHostingOffer",
+			Handler:    _Msg_DeleteHostingOffer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

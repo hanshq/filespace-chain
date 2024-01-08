@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package filespacechain.filespacechain;
 
 import "amino/amino.proto";
@@ -6,25 +7,137 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "filespacechain/filespacechain/params.proto";
+import "filespacechain/filespacechain/file_entry.proto";
+import "filespacechain/filespacechain/hosting_inquiry.proto";
+import "filespacechain/filespacechain/hosting_contract.proto";
+import "filespacechain/filespacechain/hosting_offer.proto";
 
 option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/params";
+  
+  }
+  
+  // Queries a list of FileEntry items.
+  rpc FileEntry    (QueryGetFileEntryRequest) returns (QueryGetFileEntryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/file_entry/{id}";
+  
+  }
+  rpc FileEntryAll (QueryAllFileEntryRequest) returns (QueryAllFileEntryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/file_entry";
+  
+  }
+  
+  // Queries a list of HostingInquiry items.
+  rpc HostingInquiry    (QueryGetHostingInquiryRequest) returns (QueryGetHostingInquiryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/hosting_inquiry/{id}";
+  
+  }
+  rpc HostingInquiryAll (QueryAllHostingInquiryRequest) returns (QueryAllHostingInquiryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/hosting_inquiry";
+  
+  }
+  
+  // Queries a list of HostingContract items.
+  rpc HostingContract    (QueryGetHostingContractRequest) returns (QueryGetHostingContractResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/hosting_contract/{id}";
+  
+  }
+  rpc HostingContractAll (QueryAllHostingContractRequest) returns (QueryAllHostingContractResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/hosting_contract";
+  
+  }
+  
+  // Queries a list of HostingOffer items.
+  rpc HostingOffer    (QueryGetHostingOfferRequest) returns (QueryGetHostingOfferResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/hosting_offer/{id}";
+  
+  }
+  rpc HostingOfferAll (QueryAllHostingOfferRequest) returns (QueryAllHostingOfferResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/hosting_offer";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
+
+message QueryGetFileEntryRequest {
+  uint64 id = 1;
+}
+
+message QueryGetFileEntryResponse {
+  FileEntry FileEntry = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllFileEntryRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllFileEntryResponse {
+  repeated FileEntry                              FileEntry  = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetHostingInquiryRequest {
+  uint64 id = 1;
+}
+
+message QueryGetHostingInquiryResponse {
+  HostingInquiry HostingInquiry = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHostingInquiryRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHostingInquiryResponse {
+  repeated HostingInquiry                         HostingInquiry = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination     = 2;
+}
+
+message QueryGetHostingContractRequest {
+  uint64 id = 1;
+}
+
+message QueryGetHostingContractResponse {
+  HostingContract HostingContract = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHostingContractRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHostingContractResponse {
+  repeated HostingContract                        HostingContract = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination      = 2;
+}
+
+message QueryGetHostingOfferRequest {
+  uint64 id = 1;
+}
+
+message QueryGetHostingOfferResponse {
+  HostingOffer HostingOffer = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllHostingOfferRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllHostingOfferResponse {
+  repeated HostingOffer                           HostingOffer = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+}
+

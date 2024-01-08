@@ -18,3 +18,23 @@ var (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
+
+const (
+	FileEntryKey      = "FileEntry/value/"
+	FileEntryCountKey = "FileEntry/count/"
+)
+
+const (
+	HostingInquiryKey      = "HostingInquiry/value/"
+	HostingInquiryCountKey = "HostingInquiry/count/"
+)
+
+const (
+	HostingContractKey      = "HostingContract/value/"
+	HostingContractCountKey = "HostingContract/count/"
+)
+
+const (
+	HostingOfferKey      = "HostingOffer/value/"
+	HostingOfferCountKey = "HostingOffer/count/"
+)

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package filespacechain.filespacechain;
+
+option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message HostingOffer {
+  uint64 id = 1;
+  string region = 2; 
+  cosmos.base.v1beta1.Coin pricePerBlock = 3 [(gogoproto.nullable) = false]; 
+  string creator = 4;
+}

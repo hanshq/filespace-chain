@@ -1,0 +1,14 @@
+syntax = "proto3";
+package filespacechain.filespacechain;
+
+option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
+
+message FileEntry {
+  uint64 id = 1;
+  string cid = 2; 
+  string rootCid = 3; 
+  string parentCid = 4; 
+  string metaData = 5; 
+  uint64 fileSize = 6; 
+  string creator = 7;
+}

@@ -14,6 +14,42 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
+		FileEntryList: []types.FileEntry{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		FileEntryCount: 2,
+		HostingInquiryList: []types.HostingInquiry{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		HostingInquiryCount: 2,
+		HostingContractList: []types.HostingContract{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		HostingContractCount: 2,
+		HostingOfferList: []types.HostingOffer{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		HostingOfferCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -25,5 +61,13 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
+	require.ElementsMatch(t, genesisState.FileEntryList, got.FileEntryList)
+	require.Equal(t, genesisState.FileEntryCount, got.FileEntryCount)
+	require.ElementsMatch(t, genesisState.HostingInquiryList, got.HostingInquiryList)
+	require.Equal(t, genesisState.HostingInquiryCount, got.HostingInquiryCount)
+	require.ElementsMatch(t, genesisState.HostingContractList, got.HostingContractList)
+	require.Equal(t, genesisState.HostingContractCount, got.HostingContractCount)
+	require.ElementsMatch(t, genesisState.HostingOfferList, got.HostingOfferList)
+	require.Equal(t, genesisState.HostingOfferCount, got.HostingOfferCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

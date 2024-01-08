@@ -27,7 +27,15 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // GenesisState defines the filespacechain module's genesis state.
 type GenesisState struct {
 	// params defines all the parameters of the module.
-	Params Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
+	Params               Params            `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
+	FileEntryList        []FileEntry       `protobuf:"bytes,2,rep,name=fileEntryList,proto3" json:"fileEntryList"`
+	FileEntryCount       uint64            `protobuf:"varint,3,opt,name=fileEntryCount,proto3" json:"fileEntryCount,omitempty"`
+	HostingInquiryList   []HostingInquiry  `protobuf:"bytes,4,rep,name=hostingInquiryList,proto3" json:"hostingInquiryList"`
+	HostingInquiryCount  uint64            `protobuf:"varint,5,opt,name=hostingInquiryCount,proto3" json:"hostingInquiryCount,omitempty"`
+	HostingContractList  []HostingContract `protobuf:"bytes,6,rep,name=hostingContractList,proto3" json:"hostingContractList"`
+	HostingContractCount uint64            `protobuf:"varint,7,opt,name=hostingContractCount,proto3" json:"hostingContractCount,omitempty"`
+	HostingOfferList     []HostingOffer    `protobuf:"bytes,8,rep,name=hostingOfferList,proto3" json:"hostingOfferList"`
+	HostingOfferCount    uint64            `protobuf:"varint,9,opt,name=hostingOfferCount,proto3" json:"hostingOfferCount,omitempty"`
 }
 
 func (m *GenesisState) Reset()         { *m = GenesisState{} }
@@ -70,6 +78,62 @@ func (m *GenesisState) GetParams() Params {
 	return Params{}
 }
 
+func (m *GenesisState) GetFileEntryList() []FileEntry {
+	if m != nil {
+		return m.FileEntryList
+	}
+	return nil
+}
+
+func (m *GenesisState) GetFileEntryCount() uint64 {
+	if m != nil {
+		return m.FileEntryCount
+	}
+	return 0
+}
+
+func (m *GenesisState) GetHostingInquiryList() []HostingInquiry {
+	if m != nil {
+		return m.HostingInquiryList
+	}
+	return nil
+}
+
+func (m *GenesisState) GetHostingInquiryCount() uint64 {
+	if m != nil {
+		return m.HostingInquiryCount
+	}
+	return 0
+}
+
+func (m *GenesisState) GetHostingContractList() []HostingContract {
+	if m != nil {
+		return m.HostingContractList
+	}
+	return nil
+}
+
+func (m *GenesisState) GetHostingContractCount() uint64 {
+	if m != nil {
+		return m.HostingContractCount
+	}
+	return 0
+}
+
+func (m *GenesisState) GetHostingOfferList() []HostingOffer {
+	if m != nil {
+		return m.HostingOfferList
+	}
+	return nil
+}
+
+func (m *GenesisState) GetHostingOfferCount() uint64 {
+	if m != nil {
+		return m.HostingOfferCount
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*GenesisState)(nil), "filespacechain.filespacechain.GenesisState")
 }
@@ -79,21 +143,35 @@ func init() {
 }
 
 var fileDescriptor_55344afe73cc9860 = []byte{
-	// 211 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x4e, 0xcb, 0xcc, 0x49,
-	0x2d, 0x2e, 0x48, 0x4c, 0x4e, 0x4d, 0xce, 0x48, 0xcc, 0xcc, 0xd3, 0x47, 0xe3, 0xa6, 0xa7, 0xe6,
-	0xa5, 0x16, 0x67, 0x16, 0xeb, 0x15, 0x14, 0xe5, 0x97, 0xe4, 0x0b, 0xc9, 0xa2, 0xca, 0xea, 0xa1,
-	0x72, 0xa5, 0x04, 0x13, 0x73, 0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x87, 0x94, 0x48, 0x7a,
-	0x7e, 0x7a, 0x3e, 0x98, 0xa9, 0x0f, 0x62, 0x41, 0x45, 0xb5, 0xf0, 0x5b, 0x5a, 0x90, 0x58, 0x94,
-	0x98, 0x0b, 0xb5, 0x53, 0x29, 0x82, 0x8b, 0xc7, 0x1d, 0xe2, 0x88, 0xe0, 0x92, 0xc4, 0x92, 0x54,
-	0x21, 0x0f, 0x2e, 0x36, 0x88, 0xbc, 0x04, 0xa3, 0x02, 0xa3, 0x06, 0xb7, 0x91, 0xaa, 0x1e, 0x5e,
-	0x47, 0xe9, 0x05, 0x80, 0x15, 0x3b, 0x71, 0x9e, 0xb8, 0x27, 0xcf, 0xb0, 0xe2, 0xf9, 0x06, 0x2d,
-	0xc6, 0x20, 0xa8, 0x7e, 0xa7, 0xa0, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0,
-	0x48, 0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5, 0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88,
-	0xb2, 0x48, 0xcf, 0x2c, 0xc9, 0x28, 0x4d, 0xd2, 0x4b, 0xce, 0xcf, 0xd5, 0xcf, 0x48, 0xcc, 0x2b,
-	0xce, 0x28, 0x44, 0x38, 0x51, 0x17, 0xe2, 0xc6, 0x0a, 0x74, 0x47, 0x97, 0x54, 0x16, 0xa4, 0x16,
-	0x27, 0xb1, 0x81, 0x1d, 0x6d, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x0f, 0xf0, 0x34, 0xba, 0x57,
-	0x01, 0x00, 0x00,
+	// 436 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xcf, 0xee, 0xd2, 0x40,
+	0x10, 0xc7, 0x5b, 0xf9, 0xa3, 0x2c, 0x6a, 0x64, 0xe5, 0x40, 0x48, 0xac, 0xc4, 0x44, 0xd3, 0x80,
+	0xb4, 0x0a, 0x1e, 0x3c, 0x43, 0x54, 0x4c, 0x4c, 0x34, 0xd5, 0x93, 0x89, 0x21, 0x4b, 0xb3, 0x6d,
+	0x37, 0x91, 0xdd, 0xd2, 0x2e, 0x89, 0xbc, 0x85, 0x27, 0x9f, 0xc1, 0xa3, 0x8f, 0xc1, 0x91, 0xa3,
+	0x27, 0x63, 0xe0, 0xe0, 0x6b, 0x98, 0xee, 0x2e, 0xfc, 0x7e, 0x2d, 0x4d, 0xe9, 0xa5, 0xd9, 0xf9,
+	0xce, 0x7c, 0x67, 0x3f, 0x3b, 0x1d, 0x30, 0xf0, 0xc8, 0x57, 0x1c, 0x87, 0xc8, 0xc5, 0x6e, 0x80,
+	0x08, 0xb5, 0x33, 0xa1, 0x8f, 0x29, 0x8e, 0x49, 0x6c, 0x85, 0x11, 0xe3, 0x0c, 0x3e, 0x48, 0x67,
+	0xad, 0x74, 0xd8, 0x6d, 0xa1, 0x25, 0xa1, 0xcc, 0x16, 0x5f, 0xe9, 0xe8, 0xb6, 0x7d, 0xe6, 0x33,
+	0x71, 0xb4, 0x93, 0x93, 0x52, 0xfb, 0xc5, 0x97, 0x86, 0x28, 0x42, 0x4b, 0x75, 0x67, 0xd7, 0x2a,
+	0xae, 0x4d, 0xc2, 0x39, 0xa6, 0x3c, 0xda, 0xa8, 0xfa, 0x71, 0x71, 0x7d, 0xc0, 0x62, 0x4e, 0xa8,
+	0x3f, 0x27, 0x74, 0xb5, 0x26, 0x27, 0xd3, 0x8b, 0x72, 0x26, 0x97, 0x51, 0x1e, 0x21, 0x97, 0x2b,
+	0xd7, 0xf3, 0x72, 0x2e, 0xe6, 0x79, 0x38, 0x92, 0x96, 0x47, 0x3f, 0x6a, 0xe0, 0xf6, 0x1b, 0x39,
+	0xd3, 0x8f, 0x1c, 0x71, 0x0c, 0x67, 0xa0, 0x2e, 0x9f, 0xdb, 0xd1, 0x7b, 0xba, 0xd9, 0x1c, 0x3d,
+	0xb6, 0x0a, 0x67, 0x6c, 0x7d, 0x10, 0xc5, 0x93, 0xc6, 0xf6, 0xcf, 0x43, 0xed, 0xe7, 0xbf, 0x5f,
+	0x7d, 0xdd, 0x51, 0x7e, 0xf8, 0x09, 0xdc, 0x49, 0x6a, 0x5f, 0x25, 0xb3, 0x78, 0x47, 0x62, 0xde,
+	0xb9, 0xd1, 0xab, 0x98, 0xcd, 0x91, 0x79, 0xa1, 0xe1, 0xeb, 0xa3, 0x67, 0x52, 0x4d, 0x7a, 0x3a,
+	0xe9, 0x26, 0xf0, 0x09, 0xb8, 0x7b, 0x12, 0xa6, 0x6c, 0x4d, 0x79, 0xa7, 0xd2, 0xd3, 0xcd, 0xaa,
+	0x93, 0x51, 0xa1, 0x0b, 0xa0, 0x7a, 0xef, 0x5b, 0x39, 0x59, 0x81, 0x50, 0x15, 0x08, 0xc3, 0x0b,
+	0x08, 0xb3, 0x94, 0x51, 0x71, 0xe4, 0xb4, 0x83, 0xcf, 0xc0, 0xfd, 0xb4, 0x2a, 0x89, 0x6a, 0x82,
+	0x28, 0x2f, 0x05, 0xbd, 0x93, 0x63, 0xaa, 0xfe, 0x9d, 0xe0, 0xaa, 0x0b, 0x2e, 0xab, 0x1c, 0xd7,
+	0xd1, 0xa9, 0xc0, 0xf2, 0x1a, 0xc2, 0x11, 0x68, 0x67, 0x64, 0x89, 0x76, 0x53, 0xa0, 0xe5, 0xe6,
+	0xe0, 0x17, 0x70, 0x4f, 0xe9, 0xef, 0x93, 0x0d, 0x11, 0x60, 0xb7, 0x04, 0xd8, 0xa0, 0x1c, 0x98,
+	0xb0, 0x29, 0xaa, 0xb3, 0x56, 0xf0, 0x29, 0x68, 0x5d, 0xd7, 0x24, 0x4f, 0x43, 0xf0, 0x9c, 0x27,
+	0x26, 0xce, 0x76, 0x6f, 0xe8, 0xbb, 0xbd, 0xa1, 0xff, 0xdd, 0x1b, 0xfa, 0xf7, 0x83, 0xa1, 0xed,
+	0x0e, 0x86, 0xf6, 0xfb, 0x60, 0x68, 0x9f, 0x5f, 0xfa, 0x84, 0x07, 0xeb, 0x85, 0xe5, 0xb2, 0xa5,
+	0x1d, 0x20, 0x1a, 0x07, 0xab, 0xab, 0x45, 0x1f, 0xca, 0x4d, 0xff, 0x96, 0x5d, 0x7d, 0xbe, 0x09,
+	0x71, 0xbc, 0xa8, 0x8b, 0x9d, 0x1f, 0xff, 0x0f, 0x00, 0x00, 0xff, 0xff, 0x7d, 0x5f, 0x61, 0x6d,
+	0x64, 0x04, 0x00, 0x00,
 }
 
 func (m *GenesisState) Marshal() (dAtA []byte, err error) {
@@ -116,6 +194,82 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.HostingOfferCount != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.HostingOfferCount))
+		i--
+		dAtA[i] = 0x48
+	}
+	if len(m.HostingOfferList) > 0 {
+		for iNdEx := len(m.HostingOfferList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.HostingOfferList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x42
+		}
+	}
+	if m.HostingContractCount != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.HostingContractCount))
+		i--
+		dAtA[i] = 0x38
+	}
+	if len(m.HostingContractList) > 0 {
+		for iNdEx := len(m.HostingContractList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.HostingContractList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x32
+		}
+	}
+	if m.HostingInquiryCount != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.HostingInquiryCount))
+		i--
+		dAtA[i] = 0x28
+	}
+	if len(m.HostingInquiryList) > 0 {
+		for iNdEx := len(m.HostingInquiryList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.HostingInquiryList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x22
+		}
+	}
+	if m.FileEntryCount != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.FileEntryCount))
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.FileEntryList) > 0 {
+		for iNdEx := len(m.FileEntryList) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.FileEntryList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintGenesis(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
 	{
 		size, err := m.Params.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -148,6 +302,42 @@ func (m *GenesisState) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovGenesis(uint64(l))
+	if len(m.FileEntryList) > 0 {
+		for _, e := range m.FileEntryList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if m.FileEntryCount != 0 {
+		n += 1 + sovGenesis(uint64(m.FileEntryCount))
+	}
+	if len(m.HostingInquiryList) > 0 {
+		for _, e := range m.HostingInquiryList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if m.HostingInquiryCount != 0 {
+		n += 1 + sovGenesis(uint64(m.HostingInquiryCount))
+	}
+	if len(m.HostingContractList) > 0 {
+		for _, e := range m.HostingContractList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if m.HostingContractCount != 0 {
+		n += 1 + sovGenesis(uint64(m.HostingContractCount))
+	}
+	if len(m.HostingOfferList) > 0 {
+		for _, e := range m.HostingOfferList {
+			l = e.Size()
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if m.HostingOfferCount != 0 {
+		n += 1 + sovGenesis(uint64(m.HostingOfferCount))
+	}
 	return n
 }
 
@@ -219,6 +409,218 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FileEntryList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FileEntryList = append(m.FileEntryList, FileEntry{})
+			if err := m.FileEntryList[len(m.FileEntryList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FileEntryCount", wireType)
+			}
+			m.FileEntryCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FileEntryCount |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HostingInquiryList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.HostingInquiryList = append(m.HostingInquiryList, HostingInquiry{})
+			if err := m.HostingInquiryList[len(m.HostingInquiryList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HostingInquiryCount", wireType)
+			}
+			m.HostingInquiryCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.HostingInquiryCount |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HostingContractList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.HostingContractList = append(m.HostingContractList, HostingContract{})
+			if err := m.HostingContractList[len(m.HostingContractList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HostingContractCount", wireType)
+			}
+			m.HostingContractCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.HostingContractCount |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HostingOfferList", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.HostingOfferList = append(m.HostingOfferList, HostingOffer{})
+			if err := m.HostingOfferList[len(m.HostingOfferList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 9:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field HostingOfferCount", wireType)
+			}
+			m.HostingOfferCount = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.HostingOfferCount |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipGenesis(dAtA[iNdEx:])

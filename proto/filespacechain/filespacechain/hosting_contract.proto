@@ -1,0 +1,11 @@
+syntax = "proto3";
+package filespacechain.filespacechain;
+
+option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
+
+message HostingContract {
+  uint64 id = 1;
+  string inquiryId = 2; 
+  string offerId = 3; 
+  string creator = 4;
+}

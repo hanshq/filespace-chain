@@ -1,17 +1,29 @@
 syntax = "proto3";
+
 package filespacechain.filespacechain;
 
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "filespacechain/filespacechain/params.proto";
+import "filespacechain/filespacechain/file_entry.proto";
+import "filespacechain/filespacechain/hosting_inquiry.proto";
+import "filespacechain/filespacechain/hosting_contract.proto";
+import "filespacechain/filespacechain/hosting_offer.proto";
 
 option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
 
 // GenesisState defines the filespacechain module's genesis state.
 message GenesisState {
+  
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+           Params          params               = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated FileEntry       fileEntryList        = 2 [(gogoproto.nullable) = false] ;
+           uint64          fileEntryCount       = 3;
+  repeated HostingInquiry  hostingInquiryList   = 4 [(gogoproto.nullable) = false] ;
+           uint64          hostingInquiryCount  = 5;
+  repeated HostingContract hostingContractList  = 6 [(gogoproto.nullable) = false] ;
+           uint64          hostingContractCount = 7;
+  repeated HostingOffer    hostingOfferList     = 8 [(gogoproto.nullable) = false] ;
+           uint64          hostingOfferCount    = 9;
 }
+

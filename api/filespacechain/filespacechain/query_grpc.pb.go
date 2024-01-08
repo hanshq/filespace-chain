@@ -19,7 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName = "/filespacechain.filespacechain.Query/Params"
+	Query_Params_FullMethodName             = "/filespacechain.filespacechain.Query/Params"
+	Query_FileEntry_FullMethodName          = "/filespacechain.filespacechain.Query/FileEntry"
+	Query_FileEntryAll_FullMethodName       = "/filespacechain.filespacechain.Query/FileEntryAll"
+	Query_HostingInquiry_FullMethodName     = "/filespacechain.filespacechain.Query/HostingInquiry"
+	Query_HostingInquiryAll_FullMethodName  = "/filespacechain.filespacechain.Query/HostingInquiryAll"
+	Query_HostingContract_FullMethodName    = "/filespacechain.filespacechain.Query/HostingContract"
+	Query_HostingContractAll_FullMethodName = "/filespacechain.filespacechain.Query/HostingContractAll"
+	Query_HostingOffer_FullMethodName       = "/filespacechain.filespacechain.Query/HostingOffer"
+	Query_HostingOfferAll_FullMethodName    = "/filespacechain.filespacechain.Query/HostingOfferAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -28,6 +36,18 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// Queries a list of FileEntry items.
+	FileEntry(ctx context.Context, in *QueryGetFileEntryRequest, opts ...grpc.CallOption) (*QueryGetFileEntryResponse, error)
+	FileEntryAll(ctx context.Context, in *QueryAllFileEntryRequest, opts ...grpc.CallOption) (*QueryAllFileEntryResponse, error)
+	// Queries a list of HostingInquiry items.
+	HostingInquiry(ctx context.Context, in *QueryGetHostingInquiryRequest, opts ...grpc.CallOption) (*QueryGetHostingInquiryResponse, error)
+	HostingInquiryAll(ctx context.Context, in *QueryAllHostingInquiryRequest, opts ...grpc.CallOption) (*QueryAllHostingInquiryResponse, error)
+	// Queries a list of HostingContract items.
+	HostingContract(ctx context.Context, in *QueryGetHostingContractRequest, opts ...grpc.CallOption) (*QueryGetHostingContractResponse, error)
+	HostingContractAll(ctx context.Context, in *QueryAllHostingContractRequest, opts ...grpc.CallOption) (*QueryAllHostingContractResponse, error)
+	// Queries a list of HostingOffer items.
+	HostingOffer(ctx context.Context, in *QueryGetHostingOfferRequest, opts ...grpc.CallOption) (*QueryGetHostingOfferResponse, error)
+	HostingOfferAll(ctx context.Context, in *QueryAllHostingOfferRequest, opts ...grpc.CallOption) (*QueryAllHostingOfferResponse, error)
 }
 
 type queryClient struct {
@@ -47,12 +67,96 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
+func (c *queryClient) FileEntry(ctx context.Context, in *QueryGetFileEntryRequest, opts ...grpc.CallOption) (*QueryGetFileEntryResponse, error) {
+	out := new(QueryGetFileEntryResponse)
+	err := c.cc.Invoke(ctx, Query_FileEntry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) FileEntryAll(ctx context.Context, in *QueryAllFileEntryRequest, opts ...grpc.CallOption) (*QueryAllFileEntryResponse, error) {
+	out := new(QueryAllFileEntryResponse)
+	err := c.cc.Invoke(ctx, Query_FileEntryAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HostingInquiry(ctx context.Context, in *QueryGetHostingInquiryRequest, opts ...grpc.CallOption) (*QueryGetHostingInquiryResponse, error) {
+	out := new(QueryGetHostingInquiryResponse)
+	err := c.cc.Invoke(ctx, Query_HostingInquiry_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HostingInquiryAll(ctx context.Context, in *QueryAllHostingInquiryRequest, opts ...grpc.CallOption) (*QueryAllHostingInquiryResponse, error) {
+	out := new(QueryAllHostingInquiryResponse)
+	err := c.cc.Invoke(ctx, Query_HostingInquiryAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HostingContract(ctx context.Context, in *QueryGetHostingContractRequest, opts ...grpc.CallOption) (*QueryGetHostingContractResponse, error) {
+	out := new(QueryGetHostingContractResponse)
+	err := c.cc.Invoke(ctx, Query_HostingContract_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HostingContractAll(ctx context.Context, in *QueryAllHostingContractRequest, opts ...grpc.CallOption) (*QueryAllHostingContractResponse, error) {
+	out := new(QueryAllHostingContractResponse)
+	err := c.cc.Invoke(ctx, Query_HostingContractAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HostingOffer(ctx context.Context, in *QueryGetHostingOfferRequest, opts ...grpc.CallOption) (*QueryGetHostingOfferResponse, error) {
+	out := new(QueryGetHostingOfferResponse)
+	err := c.cc.Invoke(ctx, Query_HostingOffer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) HostingOfferAll(ctx context.Context, in *QueryAllHostingOfferRequest, opts ...grpc.CallOption) (*QueryAllHostingOfferResponse, error) {
+	out := new(QueryAllHostingOfferResponse)
+	err := c.cc.Invoke(ctx, Query_HostingOfferAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// Queries a list of FileEntry items.
+	FileEntry(context.Context, *QueryGetFileEntryRequest) (*QueryGetFileEntryResponse, error)
+	FileEntryAll(context.Context, *QueryAllFileEntryRequest) (*QueryAllFileEntryResponse, error)
+	// Queries a list of HostingInquiry items.
+	HostingInquiry(context.Context, *QueryGetHostingInquiryRequest) (*QueryGetHostingInquiryResponse, error)
+	HostingInquiryAll(context.Context, *QueryAllHostingInquiryRequest) (*QueryAllHostingInquiryResponse, error)
+	// Queries a list of HostingContract items.
+	HostingContract(context.Context, *QueryGetHostingContractRequest) (*QueryGetHostingContractResponse, error)
+	HostingContractAll(context.Context, *QueryAllHostingContractRequest) (*QueryAllHostingContractResponse, error)
+	// Queries a list of HostingOffer items.
+	HostingOffer(context.Context, *QueryGetHostingOfferRequest) (*QueryGetHostingOfferResponse, error)
+	HostingOfferAll(context.Context, *QueryAllHostingOfferRequest) (*QueryAllHostingOfferResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -62,6 +166,30 @@ type UnimplementedQueryServer struct {
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
+}
+func (UnimplementedQueryServer) FileEntry(context.Context, *QueryGetFileEntryRequest) (*QueryGetFileEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FileEntry not implemented")
+}
+func (UnimplementedQueryServer) FileEntryAll(context.Context, *QueryAllFileEntryRequest) (*QueryAllFileEntryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FileEntryAll not implemented")
+}
+func (UnimplementedQueryServer) HostingInquiry(context.Context, *QueryGetHostingInquiryRequest) (*QueryGetHostingInquiryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HostingInquiry not implemented")
+}
+func (UnimplementedQueryServer) HostingInquiryAll(context.Context, *QueryAllHostingInquiryRequest) (*QueryAllHostingInquiryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HostingInquiryAll not implemented")
+}
+func (UnimplementedQueryServer) HostingContract(context.Context, *QueryGetHostingContractRequest) (*QueryGetHostingContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HostingContract not implemented")
+}
+func (UnimplementedQueryServer) HostingContractAll(context.Context, *QueryAllHostingContractRequest) (*QueryAllHostingContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HostingContractAll not implemented")
+}
+func (UnimplementedQueryServer) HostingOffer(context.Context, *QueryGetHostingOfferRequest) (*QueryGetHostingOfferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HostingOffer not implemented")
+}
+func (UnimplementedQueryServer) HostingOfferAll(context.Context, *QueryAllHostingOfferRequest) (*QueryAllHostingOfferResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HostingOfferAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -94,6 +222,150 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_FileEntry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetFileEntryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).FileEntry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_FileEntry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).FileEntry(ctx, req.(*QueryGetFileEntryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_FileEntryAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllFileEntryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).FileEntryAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_FileEntryAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).FileEntryAll(ctx, req.(*QueryAllFileEntryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HostingInquiry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHostingInquiryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HostingInquiry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HostingInquiry_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HostingInquiry(ctx, req.(*QueryGetHostingInquiryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HostingInquiryAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllHostingInquiryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HostingInquiryAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HostingInquiryAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HostingInquiryAll(ctx, req.(*QueryAllHostingInquiryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HostingContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHostingContractRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HostingContract(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HostingContract_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HostingContract(ctx, req.(*QueryGetHostingContractRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HostingContractAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllHostingContractRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HostingContractAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HostingContractAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HostingContractAll(ctx, req.(*QueryAllHostingContractRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HostingOffer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetHostingOfferRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HostingOffer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HostingOffer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HostingOffer(ctx, req.(*QueryGetHostingOfferRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_HostingOfferAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllHostingOfferRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).HostingOfferAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_HostingOfferAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).HostingOfferAll(ctx, req.(*QueryAllHostingOfferRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -104,6 +376,38 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
+		},
+		{
+			MethodName: "FileEntry",
+			Handler:    _Query_FileEntry_Handler,
+		},
+		{
+			MethodName: "FileEntryAll",
+			Handler:    _Query_FileEntryAll_Handler,
+		},
+		{
+			MethodName: "HostingInquiry",
+			Handler:    _Query_HostingInquiry_Handler,
+		},
+		{
+			MethodName: "HostingInquiryAll",
+			Handler:    _Query_HostingInquiryAll_Handler,
+		},
+		{
+			MethodName: "HostingContract",
+			Handler:    _Query_HostingContract_Handler,
+		},
+		{
+			MethodName: "HostingContractAll",
+			Handler:    _Query_HostingContractAll_Handler,
+		},
+		{
+			MethodName: "HostingOffer",
+			Handler:    _Query_HostingOffer_Handler,
+		},
+		{
+			MethodName: "HostingOfferAll",
+			Handler:    _Query_HostingOfferAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
