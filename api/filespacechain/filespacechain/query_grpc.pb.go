@@ -19,15 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName             = "/filespacechain.filespacechain.Query/Params"
-	Query_FileEntry_FullMethodName          = "/filespacechain.filespacechain.Query/FileEntry"
-	Query_FileEntryAll_FullMethodName       = "/filespacechain.filespacechain.Query/FileEntryAll"
-	Query_HostingInquiry_FullMethodName     = "/filespacechain.filespacechain.Query/HostingInquiry"
-	Query_HostingInquiryAll_FullMethodName  = "/filespacechain.filespacechain.Query/HostingInquiryAll"
-	Query_HostingContract_FullMethodName    = "/filespacechain.filespacechain.Query/HostingContract"
-	Query_HostingContractAll_FullMethodName = "/filespacechain.filespacechain.Query/HostingContractAll"
-	Query_HostingOffer_FullMethodName       = "/filespacechain.filespacechain.Query/HostingOffer"
-	Query_HostingOfferAll_FullMethodName    = "/filespacechain.filespacechain.Query/HostingOfferAll"
+	Query_Params_FullMethodName                  = "/filespacechain.filespacechain.Query/Params"
+	Query_FileEntry_FullMethodName               = "/filespacechain.filespacechain.Query/FileEntry"
+	Query_FileEntryAll_FullMethodName            = "/filespacechain.filespacechain.Query/FileEntryAll"
+	Query_HostingInquiry_FullMethodName          = "/filespacechain.filespacechain.Query/HostingInquiry"
+	Query_HostingInquiryAll_FullMethodName       = "/filespacechain.filespacechain.Query/HostingInquiryAll"
+	Query_HostingContract_FullMethodName         = "/filespacechain.filespacechain.Query/HostingContract"
+	Query_HostingContractAll_FullMethodName      = "/filespacechain.filespacechain.Query/HostingContractAll"
+	Query_HostingOffer_FullMethodName            = "/filespacechain.filespacechain.Query/HostingOffer"
+	Query_HostingOfferAll_FullMethodName         = "/filespacechain.filespacechain.Query/HostingOfferAll"
+	Query_ListHostingContractFrom_FullMethodName = "/filespacechain.filespacechain.Query/ListHostingContractFrom"
 )
 
 // QueryClient is the client API for Query service.
@@ -48,6 +49,8 @@ type QueryClient interface {
 	// Queries a list of HostingOffer items.
 	HostingOffer(ctx context.Context, in *QueryGetHostingOfferRequest, opts ...grpc.CallOption) (*QueryGetHostingOfferResponse, error)
 	HostingOfferAll(ctx context.Context, in *QueryAllHostingOfferRequest, opts ...grpc.CallOption) (*QueryAllHostingOfferResponse, error)
+	// Queries a list of ListHostingContractFrom items.
+	ListHostingContractFrom(ctx context.Context, in *QueryListHostingContractFromRequest, opts ...grpc.CallOption) (*QueryListHostingContractFromResponse, error)
 }
 
 type queryClient struct {
@@ -139,6 +142,15 @@ func (c *queryClient) HostingOfferAll(ctx context.Context, in *QueryAllHostingOf
 	return out, nil
 }
 
+func (c *queryClient) ListHostingContractFrom(ctx context.Context, in *QueryListHostingContractFromRequest, opts ...grpc.CallOption) (*QueryListHostingContractFromResponse, error) {
+	out := new(QueryListHostingContractFromResponse)
+	err := c.cc.Invoke(ctx, Query_ListHostingContractFrom_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -157,6 +169,8 @@ type QueryServer interface {
 	// Queries a list of HostingOffer items.
 	HostingOffer(context.Context, *QueryGetHostingOfferRequest) (*QueryGetHostingOfferResponse, error)
 	HostingOfferAll(context.Context, *QueryAllHostingOfferRequest) (*QueryAllHostingOfferResponse, error)
+	// Queries a list of ListHostingContractFrom items.
+	ListHostingContractFrom(context.Context, *QueryListHostingContractFromRequest) (*QueryListHostingContractFromResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -190,6 +204,9 @@ func (UnimplementedQueryServer) HostingOffer(context.Context, *QueryGetHostingOf
 }
 func (UnimplementedQueryServer) HostingOfferAll(context.Context, *QueryAllHostingOfferRequest) (*QueryAllHostingOfferResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HostingOfferAll not implemented")
+}
+func (UnimplementedQueryServer) ListHostingContractFrom(context.Context, *QueryListHostingContractFromRequest) (*QueryListHostingContractFromResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHostingContractFrom not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -366,6 +383,24 @@ func _Query_HostingOfferAll_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_ListHostingContractFrom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListHostingContractFromRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListHostingContractFrom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_ListHostingContractFrom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListHostingContractFrom(ctx, req.(*QueryListHostingContractFromRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -408,6 +443,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "HostingOfferAll",
 			Handler:    _Query_HostingOfferAll_Handler,
+		},
+		{
+			MethodName: "ListHostingContractFrom",
+			Handler:    _Query_ListHostingContractFrom_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -2,8 +2,6 @@ package keeper
 
 import (
 	"context"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-
 	"cosmossdk.io/store/prefix"
 	"github.com/cosmos/cosmos-sdk/runtime"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -12,37 +10,6 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
-
-func (k Keeper) HostingContractFrom(ctx sdk.Context, req *types.QueryAllHostingContractFromRequest) (*types.QueryAllHostingContractResponse, error) {
-	if req == nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid request")
-	}
-
-	var hostingContracts []types.HostingContract
-	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	hostingContractStore := prefix.NewStore(store, types.KeyPrefix(types.HostingContractKey))
-
-	// Iterate with pagination
-	pageRes, err := query.FilteredPaginate(hostingContractStore, req.Pagination, func(key []byte, value []byte, accumulate bool) (bool, error) {
-		var hostingContract types.HostingContract
-		if err := k.cdc.Unmarshal(value, &hostingContract); err != nil {
-			return false, err
-		}
-		if hostingContract.Creator == req.From {
-			if accumulate {
-				hostingContracts = append(hostingContracts, hostingContract)
-			}
-			return true, nil
-		}
-		return false, nil
-	})
-
-	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
-	}
-
-	return &types.QueryAllHostingContractResponse{HostingContract: hostingContracts, Pagination: pageRes}, nil
-}
 
 func (k Keeper) HostingContractAll(ctx context.Context, req *types.QueryAllHostingContractRequest) (*types.QueryAllHostingContractResponse, error) {
 	if req == nil {
