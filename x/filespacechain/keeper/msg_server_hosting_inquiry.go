@@ -3,6 +3,7 @@ package keeper
 import (
 	"context"
 	"fmt"
+	"strconv"
 
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -24,6 +25,18 @@ func (k msgServer) CreateHostingInquiry(goCtx context.Context, msg *types.MsgCre
 	id := k.AppendHostingInquiry(
 		ctx,
 		hostingInquiry,
+	)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			"createHostingInquiry", // This is the event type
+			sdk.NewAttribute("Creator", msg.Creator),
+			sdk.NewAttribute("FileEntryCid", msg.FileEntryCid),
+			sdk.NewAttribute("ReplicationRate", strconv.FormatUint(msg.ReplicationRate, 10)),
+			sdk.NewAttribute("EscrowAmount", "1"),
+			sdk.NewAttribute("EndTime", strconv.FormatUint(msg.EndTime, 10)),
+			// ... other attributes
+		),
 	)
 
 	return &types.MsgCreateHostingInquiryResponse{

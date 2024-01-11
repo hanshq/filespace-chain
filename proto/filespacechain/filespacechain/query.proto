@@ -119,6 +119,11 @@ message QueryAllHostingContractRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
+message QueryAllHostingContractFromRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string from = 2;
+}
+
 message QueryAllHostingContractResponse {
   repeated HostingContract                        HostingContract = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination      = 2;

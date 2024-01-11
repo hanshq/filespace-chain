@@ -60,7 +60,7 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "cosmos"
+	AccountAddressPrefix = "space"
 	Name                 = "filespace-chain"
 )
 
