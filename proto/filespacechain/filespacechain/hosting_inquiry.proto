@@ -12,4 +12,5 @@ message HostingInquiry {
   cosmos.base.v1beta1.Coin escrowAmount = 4 [(gogoproto.nullable) = false]; 
   uint64 endTime = 5; 
   string creator = 6;
+  uint64 maxPricePerBlock = 7;
 }

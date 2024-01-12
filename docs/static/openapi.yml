@@ -9004,6 +9004,969 @@ paths:
               Since: cosmos-sdk 0.47
       tags:
         - Msg
+  /hanshq/filespace-chain/filespacechain/file_entry:
+    get:
+      operationId: FilespacechainFilespacechainQuery_FileEntryAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              FileEntry:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uint64
+                    cid:
+                      type: string
+                    rootCid:
+                      type: string
+                    parentCid:
+                      type: string
+                    metaData:
+                      type: string
+                    fileSize:
+                      type: string
+                      format: uint64
+                    creator:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/file_entry/{id}:
+    get:
+      summary: Queries a list of FileEntry items.
+      operationId: FilespacechainFilespacechainQuery_FileEntry
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              FileEntry:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  cid:
+                    type: string
+                  rootCid:
+                    type: string
+                  parentCid:
+                    type: string
+                  metaData:
+                    type: string
+                  fileSize:
+                    type: string
+                    format: uint64
+                  creator:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/hosting_contract:
+    get:
+      operationId: FilespacechainFilespacechainQuery_HostingContractAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingContract:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uint64
+                    inquiryId:
+                      type: string
+                      format: uint64
+                    offerId:
+                      type: string
+                      format: uint64
+                    creator:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/hosting_contract/{id}:
+    get:
+      summary: Queries a list of HostingContract items.
+      operationId: FilespacechainFilespacechainQuery_HostingContract
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingContract:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  inquiryId:
+                    type: string
+                    format: uint64
+                  offerId:
+                    type: string
+                    format: uint64
+                  creator:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/hosting_inquiry:
+    get:
+      operationId: FilespacechainFilespacechainQuery_HostingInquiryAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingInquiry:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uint64
+                    fileEntryCid:
+                      type: string
+                    replicationRate:
+                      type: string
+                      format: uint64
+                    escrowAmount:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    endTime:
+                      type: string
+                      format: uint64
+                    creator:
+                      type: string
+                    maxPricePerBlock:
+                      type: string
+                      format: uint64
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/hosting_inquiry/{id}:
+    get:
+      summary: Queries a list of HostingInquiry items.
+      operationId: FilespacechainFilespacechainQuery_HostingInquiry
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingInquiry:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  fileEntryCid:
+                    type: string
+                  replicationRate:
+                    type: string
+                    format: uint64
+                  escrowAmount:
+                    type: object
+                    properties:
+                      denom:
+                        type: string
+                      amount:
+                        type: string
+                    description: >-
+                      Coin defines a token with a denomination and an amount.
+
+
+                      NOTE: The amount field is an Int which implements the
+                      custom method
+
+                      signatures required by gogoproto.
+                  endTime:
+                    type: string
+                    format: uint64
+                  creator:
+                    type: string
+                  maxPricePerBlock:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/hosting_offer:
+    get:
+      operationId: FilespacechainFilespacechainQuery_HostingOfferAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingOffer:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uint64
+                    region:
+                      type: string
+                    pricePerBlock:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    creator:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/hosting_offer/{id}:
+    get:
+      summary: Queries a list of HostingOffer items.
+      operationId: FilespacechainFilespacechainQuery_HostingOffer
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingOffer:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uint64
+                  region:
+                    type: string
+                  pricePerBlock:
+                    type: object
+                    properties:
+                      denom:
+                        type: string
+                      amount:
+                        type: string
+                    description: >-
+                      Coin defines a token with a denomination and an amount.
+
+
+                      NOTE: The amount field is an Int which implements the
+                      custom method
+
+                      signatures required by gogoproto.
+                  creator:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uint64
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/list_hosting_contract_from/{creator}:
+    get:
+      summary: Queries a list of ListHostingContractFrom items.
+      operationId: FilespacechainFilespacechainQuery_ListHostingContractFrom
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              HostingContract:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uint64
+                    inquiryId:
+                      type: string
+                      format: uint64
+                    offerId:
+                      type: string
+                      format: uint64
+                    creator:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: creator
+          in: path
+          required: true
+          type: string
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  /hanshq/filespace-chain/filespacechain/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: FilespacechainFilespacechainQuery_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /filespacechain.filespacechain.Msg/CreateFileEntry:
     post:
       operationId: FilespacechainFilespacechainMsg_CreateFileEntry
@@ -9097,8 +10060,10 @@ paths:
                 type: string
               inquiryId:
                 type: string
+                format: uint64
               offerId:
                 type: string
+                format: uint64
       tags:
         - Msg
   /filespacechain.filespacechain.Msg/CreateHostingInquiry:
@@ -9163,6 +10128,21 @@ paths:
               endTime:
                 type: string
                 format: uint64
+              maxPricePerBlock:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
       tags:
         - Msg
   /filespacechain.filespacechain.Msg/CreateHostingOffer:
@@ -9474,8 +10454,10 @@ paths:
                 format: uint64
               inquiryId:
                 type: string
+                format: uint64
               offerId:
                 type: string
+                format: uint64
       tags:
         - Msg
   /filespacechain.filespacechain.Msg/UpdateHostingInquiry:
@@ -9539,6 +10521,21 @@ paths:
               endTime:
                 type: string
                 format: uint64
+              maxPricePerBlock:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
       tags:
         - Msg
   /filespacechain.filespacechain.Msg/UpdateHostingOffer:
@@ -9651,957 +10648,6 @@ paths:
             description: MsgUpdateParams is the Msg/UpdateParams request type.
       tags:
         - Msg
-  /hanshq/filespace-chain/filespacechain/file_entry:
-    get:
-      operationId: FilespacechainFilespacechainQuery_FileEntryAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              FileEntry:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uint64
-                    cid:
-                      type: string
-                    rootCid:
-                      type: string
-                    parentCid:
-                      type: string
-                    metaData:
-                      type: string
-                    fileSize:
-                      type: string
-                      format: uint64
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/file_entry/{id}:
-    get:
-      summary: Queries a list of FileEntry items.
-      operationId: FilespacechainFilespacechainQuery_FileEntry
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              FileEntry:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  cid:
-                    type: string
-                  rootCid:
-                    type: string
-                  parentCid:
-                    type: string
-                  metaData:
-                    type: string
-                  fileSize:
-                    type: string
-                    format: uint64
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/hosting_contract:
-    get:
-      operationId: FilespacechainFilespacechainQuery_HostingContractAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingContract:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uint64
-                    inquiryId:
-                      type: string
-                    offerId:
-                      type: string
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/hosting_contract/{id}:
-    get:
-      summary: Queries a list of HostingContract items.
-      operationId: FilespacechainFilespacechainQuery_HostingContract
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingContract:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  inquiryId:
-                    type: string
-                  offerId:
-                    type: string
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/hosting_inquiry:
-    get:
-      operationId: FilespacechainFilespacechainQuery_HostingInquiryAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingInquiry:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uint64
-                    fileEntryCid:
-                      type: string
-                    replicationRate:
-                      type: string
-                      format: uint64
-                    escrowAmount:
-                      type: object
-                      properties:
-                        denom:
-                          type: string
-                        amount:
-                          type: string
-                      description: >-
-                        Coin defines a token with a denomination and an amount.
-
-
-                        NOTE: The amount field is an Int which implements the
-                        custom method
-
-                        signatures required by gogoproto.
-                    endTime:
-                      type: string
-                      format: uint64
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/hosting_inquiry/{id}:
-    get:
-      summary: Queries a list of HostingInquiry items.
-      operationId: FilespacechainFilespacechainQuery_HostingInquiry
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingInquiry:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  fileEntryCid:
-                    type: string
-                  replicationRate:
-                    type: string
-                    format: uint64
-                  escrowAmount:
-                    type: object
-                    properties:
-                      denom:
-                        type: string
-                      amount:
-                        type: string
-                    description: >-
-                      Coin defines a token with a denomination and an amount.
-
-
-                      NOTE: The amount field is an Int which implements the
-                      custom method
-
-                      signatures required by gogoproto.
-                  endTime:
-                    type: string
-                    format: uint64
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/hosting_offer:
-    get:
-      operationId: FilespacechainFilespacechainQuery_HostingOfferAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingOffer:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uint64
-                    region:
-                      type: string
-                    pricePerBlock:
-                      type: object
-                      properties:
-                        denom:
-                          type: string
-                        amount:
-                          type: string
-                      description: >-
-                        Coin defines a token with a denomination and an amount.
-
-
-                        NOTE: The amount field is an Int which implements the
-                        custom method
-
-                        signatures required by gogoproto.
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/hosting_offer/{id}:
-    get:
-      summary: Queries a list of HostingOffer items.
-      operationId: FilespacechainFilespacechainQuery_HostingOffer
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingOffer:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    format: uint64
-                  region:
-                    type: string
-                  pricePerBlock:
-                    type: object
-                    properties:
-                      denom:
-                        type: string
-                      amount:
-                        type: string
-                    description: >-
-                      Coin defines a token with a denomination and an amount.
-
-
-                      NOTE: The amount field is an Int which implements the
-                      custom method
-
-                      signatures required by gogoproto.
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/list_hosting_contract_from/{creator}:
-    get:
-      summary: Queries a list of ListHostingContractFrom items.
-      operationId: FilespacechainFilespacechainQuery_ListHostingContractFrom
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              HostingContract:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uint64
-                    inquiryId:
-                      type: string
-                    offerId:
-                      type: string
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: creator
-          in: path
-          required: true
-          type: string
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /hanshq/filespace-chain/filespacechain/params:
-    get:
-      summary: Parameters queries the parameters of the module.
-      operationId: FilespacechainFilespacechainQuery_Params
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              params:
-                description: params holds all the parameters of this module.
-                type: object
-            description: >-
-              QueryParamsResponse is response type for the Query/Params RPC
-              method.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      tags:
-        - Query
   /ibc.applications.fee.v1.Msg/PayPacketFee:
     post:
       summary: >-
@@ -24174,248 +24220,6 @@ definitions:
           min_commission_rate is the chain-wide minimum commission rate that a
           validator can charge their delegators
     description: Params defines the parameters for the x/staking module.
-  filespacechain.filespacechain.MsgCreateFileEntry:
-    type: object
-    properties:
-      creator:
-        type: string
-      cid:
-        type: string
-      rootCid:
-        type: string
-      parentCid:
-        type: string
-      metaData:
-        type: string
-      fileSize:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgCreateFileEntryResponse:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgCreateHostingContract:
-    type: object
-    properties:
-      creator:
-        type: string
-      inquiryId:
-        type: string
-      offerId:
-        type: string
-  filespacechain.filespacechain.MsgCreateHostingContractResponse:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgCreateHostingInquiry:
-    type: object
-    properties:
-      creator:
-        type: string
-      fileEntryCid:
-        type: string
-      replicationRate:
-        type: string
-        format: uint64
-      escrowAmount:
-        type: object
-        properties:
-          denom:
-            type: string
-          amount:
-            type: string
-        description: |-
-          Coin defines a token with a denomination and an amount.
-
-          NOTE: The amount field is an Int which implements the custom method
-          signatures required by gogoproto.
-      endTime:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgCreateHostingInquiryResponse:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgCreateHostingOffer:
-    type: object
-    properties:
-      creator:
-        type: string
-      region:
-        type: string
-      pricePerBlock:
-        type: object
-        properties:
-          denom:
-            type: string
-          amount:
-            type: string
-        description: |-
-          Coin defines a token with a denomination and an amount.
-
-          NOTE: The amount field is an Int which implements the custom method
-          signatures required by gogoproto.
-  filespacechain.filespacechain.MsgCreateHostingOfferResponse:
-    type: object
-    properties:
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgDeleteFileEntry:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgDeleteFileEntryResponse:
-    type: object
-  filespacechain.filespacechain.MsgDeleteHostingContract:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgDeleteHostingContractResponse:
-    type: object
-  filespacechain.filespacechain.MsgDeleteHostingInquiry:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgDeleteHostingInquiryResponse:
-    type: object
-  filespacechain.filespacechain.MsgDeleteHostingOffer:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgDeleteHostingOfferResponse:
-    type: object
-  filespacechain.filespacechain.MsgUpdateFileEntry:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-      cid:
-        type: string
-      rootCid:
-        type: string
-      parentCid:
-        type: string
-      metaData:
-        type: string
-      fileSize:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgUpdateFileEntryResponse:
-    type: object
-  filespacechain.filespacechain.MsgUpdateHostingContract:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-      inquiryId:
-        type: string
-      offerId:
-        type: string
-  filespacechain.filespacechain.MsgUpdateHostingContractResponse:
-    type: object
-  filespacechain.filespacechain.MsgUpdateHostingInquiry:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-      fileEntryCid:
-        type: string
-      replicationRate:
-        type: string
-        format: uint64
-      escrowAmount:
-        type: object
-        properties:
-          denom:
-            type: string
-          amount:
-            type: string
-        description: |-
-          Coin defines a token with a denomination and an amount.
-
-          NOTE: The amount field is an Int which implements the custom method
-          signatures required by gogoproto.
-      endTime:
-        type: string
-        format: uint64
-  filespacechain.filespacechain.MsgUpdateHostingInquiryResponse:
-    type: object
-  filespacechain.filespacechain.MsgUpdateHostingOffer:
-    type: object
-    properties:
-      creator:
-        type: string
-      id:
-        type: string
-        format: uint64
-      region:
-        type: string
-      pricePerBlock:
-        type: object
-        properties:
-          denom:
-            type: string
-          amount:
-            type: string
-        description: |-
-          Coin defines a token with a denomination and an amount.
-
-          NOTE: The amount field is an Int which implements the custom method
-          signatures required by gogoproto.
-  filespacechain.filespacechain.MsgUpdateHostingOfferResponse:
-    type: object
-  filespacechain.filespacechain.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  filespacechain.filespacechain.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.
-  filespacechain.filespacechain.Params:
-    type: object
-    description: Params defines the parameters for the module.
   cosmos.base.query.v1beta1.PageRequest:
     type: object
     properties:
@@ -24520,8 +24324,10 @@ definitions:
         format: uint64
       inquiryId:
         type: string
+        format: uint64
       offerId:
         type: string
+        format: uint64
       creator:
         type: string
   filespacechain.filespacechain.HostingInquiry:
@@ -24552,6 +24358,9 @@ definitions:
         format: uint64
       creator:
         type: string
+      maxPricePerBlock:
+        type: string
+        format: uint64
   filespacechain.filespacechain.HostingOffer:
     type: object
     properties:
@@ -24574,6 +24383,9 @@ definitions:
           signatures required by gogoproto.
       creator:
         type: string
+  filespacechain.filespacechain.Params:
+    type: object
+    description: Params defines the parameters for the module.
   filespacechain.filespacechain.QueryAllFileEntryResponse:
     type: object
     properties:
@@ -24637,8 +24449,10 @@ definitions:
               format: uint64
             inquiryId:
               type: string
+              format: uint64
             offerId:
               type: string
+              format: uint64
             creator:
               type: string
       pagination:
@@ -24703,6 +24517,9 @@ definitions:
               format: uint64
             creator:
               type: string
+            maxPricePerBlock:
+              type: string
+              format: uint64
       pagination:
         type: object
         properties:
@@ -24818,8 +24635,10 @@ definitions:
             format: uint64
           inquiryId:
             type: string
+            format: uint64
           offerId:
             type: string
+            format: uint64
           creator:
             type: string
   filespacechain.filespacechain.QueryGetHostingInquiryResponse:
@@ -24856,6 +24675,9 @@ definitions:
             format: uint64
           creator:
             type: string
+          maxPricePerBlock:
+            type: string
+            format: uint64
   filespacechain.filespacechain.QueryGetHostingOfferResponse:
     type: object
     properties:
@@ -24897,8 +24719,10 @@ definitions:
               format: uint64
             inquiryId:
               type: string
+              format: uint64
             offerId:
               type: string
+              format: uint64
             creator:
               type: string
       pagination:
@@ -24934,6 +24758,273 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  filespacechain.filespacechain.MsgCreateFileEntry:
+    type: object
+    properties:
+      creator:
+        type: string
+      cid:
+        type: string
+      rootCid:
+        type: string
+      parentCid:
+        type: string
+      metaData:
+        type: string
+      fileSize:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgCreateFileEntryResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgCreateHostingContract:
+    type: object
+    properties:
+      creator:
+        type: string
+      inquiryId:
+        type: string
+        format: uint64
+      offerId:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgCreateHostingContractResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgCreateHostingInquiry:
+    type: object
+    properties:
+      creator:
+        type: string
+      fileEntryCid:
+        type: string
+      replicationRate:
+        type: string
+        format: uint64
+      escrowAmount:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
+      endTime:
+        type: string
+        format: uint64
+      maxPricePerBlock:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
+  filespacechain.filespacechain.MsgCreateHostingInquiryResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgCreateHostingOffer:
+    type: object
+    properties:
+      creator:
+        type: string
+      region:
+        type: string
+      pricePerBlock:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
+  filespacechain.filespacechain.MsgCreateHostingOfferResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgDeleteFileEntry:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgDeleteFileEntryResponse:
+    type: object
+  filespacechain.filespacechain.MsgDeleteHostingContract:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgDeleteHostingContractResponse:
+    type: object
+  filespacechain.filespacechain.MsgDeleteHostingInquiry:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgDeleteHostingInquiryResponse:
+    type: object
+  filespacechain.filespacechain.MsgDeleteHostingOffer:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgDeleteHostingOfferResponse:
+    type: object
+  filespacechain.filespacechain.MsgUpdateFileEntry:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+      cid:
+        type: string
+      rootCid:
+        type: string
+      parentCid:
+        type: string
+      metaData:
+        type: string
+      fileSize:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgUpdateFileEntryResponse:
+    type: object
+  filespacechain.filespacechain.MsgUpdateHostingContract:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+      inquiryId:
+        type: string
+        format: uint64
+      offerId:
+        type: string
+        format: uint64
+  filespacechain.filespacechain.MsgUpdateHostingContractResponse:
+    type: object
+  filespacechain.filespacechain.MsgUpdateHostingInquiry:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+      fileEntryCid:
+        type: string
+      replicationRate:
+        type: string
+        format: uint64
+      escrowAmount:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
+      endTime:
+        type: string
+        format: uint64
+      maxPricePerBlock:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
+  filespacechain.filespacechain.MsgUpdateHostingInquiryResponse:
+    type: object
+  filespacechain.filespacechain.MsgUpdateHostingOffer:
+    type: object
+    properties:
+      creator:
+        type: string
+      id:
+        type: string
+        format: uint64
+      region:
+        type: string
+      pricePerBlock:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
+  filespacechain.filespacechain.MsgUpdateHostingOfferResponse:
+    type: object
+  filespacechain.filespacechain.MsgUpdateParams:
+    type: object
+    properties:
+      authority:
+        type: string
+        description: >-
+          authority is the address that controls the module (defaults to x/gov
+          unless overwritten).
+      params:
+        description: 'NOTE: All parameters must be supplied.'
+        type: object
+    description: MsgUpdateParams is the Msg/UpdateParams request type.
+  filespacechain.filespacechain.MsgUpdateParamsResponse:
+    type: object
+    description: |-
+      MsgUpdateParamsResponse defines the response structure for executing a
+      MsgUpdateParams message.
   ibc.applications.fee.v1.Fee:
     type: object
     properties:

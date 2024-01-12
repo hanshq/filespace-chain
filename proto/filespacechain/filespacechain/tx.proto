@@ -95,6 +95,7 @@ message MsgCreateHostingInquiry {
   uint64                   replicationRate = 3;
   cosmos.base.v1beta1.Coin escrowAmount    = 4 [(gogoproto.nullable) = false];
   uint64                   endTime         = 5;
+  cosmos.base.v1beta1.Coin maxPricePerBlock    = 6 [(gogoproto.nullable) = false];
 }
 
 message MsgCreateHostingInquiryResponse {
@@ -109,6 +110,7 @@ message MsgUpdateHostingInquiry {
   uint64                   replicationRate = 4;
   cosmos.base.v1beta1.Coin escrowAmount    = 5 [(gogoproto.nullable) = false];
   uint64                   endTime         = 6;
+  cosmos.base.v1beta1.Coin maxPricePerBlock    = 7 [(gogoproto.nullable) = false];
 }
 
 message MsgUpdateHostingInquiryResponse {}
@@ -124,8 +126,8 @@ message MsgDeleteHostingInquiryResponse {}
 message MsgCreateHostingContract {
   option (cosmos.msg.v1.signer) = "creator";
   string creator   = 1;
-  string inquiryId = 2;
-  string offerId   = 3;
+  uint64 inquiryId = 2;
+  uint64 offerId   = 3;
 }
 
 message MsgCreateHostingContractResponse {
@@ -136,8 +138,8 @@ message MsgUpdateHostingContract {
   option (cosmos.msg.v1.signer) = "creator";
   string creator   = 1;
   uint64 id        = 2;
-  string inquiryId = 3;
-  string offerId   = 4;
+  uint64 inquiryId = 3;
+  uint64 offerId   = 4;
 }
 
 message MsgUpdateHostingContractResponse {}

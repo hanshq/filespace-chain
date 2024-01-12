@@ -100,14 +100,14 @@ func (x *fastReflection_HostingContract) Range(f func(protoreflect.FieldDescript
 			return
 		}
 	}
-	if x.InquiryId != "" {
-		value := protoreflect.ValueOfString(x.InquiryId)
+	if x.InquiryId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.InquiryId)
 		if !f(fd_HostingContract_inquiryId, value) {
 			return
 		}
 	}
-	if x.OfferId != "" {
-		value := protoreflect.ValueOfString(x.OfferId)
+	if x.OfferId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.OfferId)
 		if !f(fd_HostingContract_offerId, value) {
 			return
 		}
@@ -136,9 +136,9 @@ func (x *fastReflection_HostingContract) Has(fd protoreflect.FieldDescriptor) bo
 	case "filespacechain.filespacechain.HostingContract.id":
 		return x.Id != uint64(0)
 	case "filespacechain.filespacechain.HostingContract.inquiryId":
-		return x.InquiryId != ""
+		return x.InquiryId != uint64(0)
 	case "filespacechain.filespacechain.HostingContract.offerId":
-		return x.OfferId != ""
+		return x.OfferId != uint64(0)
 	case "filespacechain.filespacechain.HostingContract.creator":
 		return x.Creator != ""
 	default:
@@ -160,9 +160,9 @@ func (x *fastReflection_HostingContract) Clear(fd protoreflect.FieldDescriptor) 
 	case "filespacechain.filespacechain.HostingContract.id":
 		x.Id = uint64(0)
 	case "filespacechain.filespacechain.HostingContract.inquiryId":
-		x.InquiryId = ""
+		x.InquiryId = uint64(0)
 	case "filespacechain.filespacechain.HostingContract.offerId":
-		x.OfferId = ""
+		x.OfferId = uint64(0)
 	case "filespacechain.filespacechain.HostingContract.creator":
 		x.Creator = ""
 	default:
@@ -186,10 +186,10 @@ func (x *fastReflection_HostingContract) Get(descriptor protoreflect.FieldDescri
 		return protoreflect.ValueOfUint64(value)
 	case "filespacechain.filespacechain.HostingContract.inquiryId":
 		value := x.InquiryId
-		return protoreflect.ValueOfString(value)
+		return protoreflect.ValueOfUint64(value)
 	case "filespacechain.filespacechain.HostingContract.offerId":
 		value := x.OfferId
-		return protoreflect.ValueOfString(value)
+		return protoreflect.ValueOfUint64(value)
 	case "filespacechain.filespacechain.HostingContract.creator":
 		value := x.Creator
 		return protoreflect.ValueOfString(value)
@@ -216,9 +216,9 @@ func (x *fastReflection_HostingContract) Set(fd protoreflect.FieldDescriptor, va
 	case "filespacechain.filespacechain.HostingContract.id":
 		x.Id = value.Uint()
 	case "filespacechain.filespacechain.HostingContract.inquiryId":
-		x.InquiryId = value.Interface().(string)
+		x.InquiryId = value.Uint()
 	case "filespacechain.filespacechain.HostingContract.offerId":
-		x.OfferId = value.Interface().(string)
+		x.OfferId = value.Uint()
 	case "filespacechain.filespacechain.HostingContract.creator":
 		x.Creator = value.Interface().(string)
 	default:
@@ -265,9 +265,9 @@ func (x *fastReflection_HostingContract) NewField(fd protoreflect.FieldDescripto
 	case "filespacechain.filespacechain.HostingContract.id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "filespacechain.filespacechain.HostingContract.inquiryId":
-		return protoreflect.ValueOfString("")
+		return protoreflect.ValueOfUint64(uint64(0))
 	case "filespacechain.filespacechain.HostingContract.offerId":
-		return protoreflect.ValueOfString("")
+		return protoreflect.ValueOfUint64(uint64(0))
 	case "filespacechain.filespacechain.HostingContract.creator":
 		return protoreflect.ValueOfString("")
 	default:
@@ -342,13 +342,11 @@ func (x *fastReflection_HostingContract) ProtoMethods() *protoiface.Methods {
 		if x.Id != 0 {
 			n += 1 + runtime.Sov(uint64(x.Id))
 		}
-		l = len(x.InquiryId)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if x.InquiryId != 0 {
+			n += 1 + runtime.Sov(uint64(x.InquiryId))
 		}
-		l = len(x.OfferId)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if x.OfferId != 0 {
+			n += 1 + runtime.Sov(uint64(x.OfferId))
 		}
 		l = len(x.Creator)
 		if l > 0 {
@@ -390,19 +388,15 @@ func (x *fastReflection_HostingContract) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x22
 		}
-		if len(x.OfferId) > 0 {
-			i -= len(x.OfferId)
-			copy(dAtA[i:], x.OfferId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OfferId)))
+		if x.OfferId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.OfferId))
 			i--
-			dAtA[i] = 0x1a
+			dAtA[i] = 0x18
 		}
-		if len(x.InquiryId) > 0 {
-			i -= len(x.InquiryId)
-			copy(dAtA[i:], x.InquiryId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.InquiryId)))
+		if x.InquiryId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.InquiryId))
 			i--
-			dAtA[i] = 0x12
+			dAtA[i] = 0x10
 		}
 		if x.Id != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
@@ -478,10 +472,10 @@ func (x *fastReflection_HostingContract) ProtoMethods() *protoiface.Methods {
 					}
 				}
 			case 2:
-				if wireType != 2 {
+				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field InquiryId", wireType)
 				}
-				var stringLen uint64
+				x.InquiryId = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -491,29 +485,16 @@ func (x *fastReflection_HostingContract) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					x.InquiryId |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.InquiryId = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 3:
-				if wireType != 2 {
+				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OfferId", wireType)
 				}
-				var stringLen uint64
+				x.OfferId = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -523,24 +504,11 @@ func (x *fastReflection_HostingContract) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					x.OfferId |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.OfferId = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
@@ -627,8 +595,8 @@ type HostingContract struct {
 	unknownFields protoimpl.UnknownFields
 
 	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	InquiryId string `protobuf:"bytes,2,opt,name=inquiryId,proto3" json:"inquiryId,omitempty"`
-	OfferId   string `protobuf:"bytes,3,opt,name=offerId,proto3" json:"offerId,omitempty"`
+	InquiryId uint64 `protobuf:"varint,2,opt,name=inquiryId,proto3" json:"inquiryId,omitempty"`
+	OfferId   uint64 `protobuf:"varint,3,opt,name=offerId,proto3" json:"offerId,omitempty"`
 	Creator   string `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
 }
 
@@ -659,18 +627,18 @@ func (x *HostingContract) GetId() uint64 {
 	return 0
 }
 
-func (x *HostingContract) GetInquiryId() string {
+func (x *HostingContract) GetInquiryId() uint64 {
 	if x != nil {
 		return x.InquiryId
 	}
-	return ""
+	return 0
 }
 
-func (x *HostingContract) GetOfferId() string {
+func (x *HostingContract) GetOfferId() uint64 {
 	if x != nil {
 		return x.OfferId
 	}
-	return ""
+	return 0
 }
 
 func (x *HostingContract) GetCreator() string {
@@ -691,9 +659,9 @@ var file_filespacechain_filespacechain_hosting_contract_proto_rawDesc = []byte{
 	0x63, 0x68, 0x61, 0x69, 0x6e, 0x22, 0x73, 0x0a, 0x0f, 0x48, 0x6f, 0x73, 0x74, 0x69, 0x6e, 0x67,
 	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x69, 0x6e, 0x71, 0x75,
-	0x69, 0x72, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x6e, 0x71,
+	0x69, 0x72, 0x79, 0x49, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x69, 0x6e, 0x71,
 	0x75, 0x69, 0x72, 0x79, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x6f, 0x66, 0x66, 0x65, 0x72, 0x49,
-	0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6f, 0x66, 0x66, 0x65, 0x72, 0x49, 0x64,
+	0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x6f, 0x66, 0x66, 0x65, 0x72, 0x49, 0x64,
 	0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x04, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x42, 0xfe, 0x01, 0x0a, 0x21, 0x63,
 	0x6f, 0x6d, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x63, 0x68, 0x61, 0x69,

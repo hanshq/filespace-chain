@@ -24,8 +24,8 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type HostingContract struct {
 	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	InquiryId string `protobuf:"bytes,2,opt,name=inquiryId,proto3" json:"inquiryId,omitempty"`
-	OfferId   string `protobuf:"bytes,3,opt,name=offerId,proto3" json:"offerId,omitempty"`
+	InquiryId uint64 `protobuf:"varint,2,opt,name=inquiryId,proto3" json:"inquiryId,omitempty"`
+	OfferId   uint64 `protobuf:"varint,3,opt,name=offerId,proto3" json:"offerId,omitempty"`
 	Creator   string `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
 }
 
@@ -69,18 +69,18 @@ func (m *HostingContract) GetId() uint64 {
 	return 0
 }
 
-func (m *HostingContract) GetInquiryId() string {
+func (m *HostingContract) GetInquiryId() uint64 {
 	if m != nil {
 		return m.InquiryId
 	}
-	return ""
+	return 0
 }
 
-func (m *HostingContract) GetOfferId() string {
+func (m *HostingContract) GetOfferId() uint64 {
 	if m != nil {
 		return m.OfferId
 	}
-	return ""
+	return 0
 }
 
 func (m *HostingContract) GetCreator() string {
@@ -106,14 +106,14 @@ var fileDescriptor_0c3c44867a41fc3e = []byte{
 	0xe5, 0x97, 0xe4, 0x0b, 0xc9, 0xa2, 0x2a, 0xd3, 0x43, 0xe5, 0x2a, 0x15, 0x73, 0xf1, 0x7b, 0x40,
 	0x34, 0x3a, 0x43, 0xf5, 0x09, 0xf1, 0x71, 0x31, 0x65, 0xa6, 0x48, 0x30, 0x2a, 0x30, 0x6a, 0xb0,
 	0x04, 0x31, 0x65, 0xa6, 0x08, 0xc9, 0x70, 0x71, 0x66, 0xe6, 0x15, 0x96, 0x66, 0x16, 0x55, 0x7a,
-	0xa6, 0x48, 0x30, 0x29, 0x30, 0x6a, 0x70, 0x06, 0x21, 0x04, 0x84, 0x24, 0xb8, 0xd8, 0xf3, 0xd3,
-	0xd2, 0x52, 0x8b, 0x3c, 0x53, 0x24, 0x98, 0xc1, 0x72, 0x30, 0x2e, 0x48, 0x26, 0xb9, 0x28, 0x35,
-	0xb1, 0x24, 0xbf, 0x48, 0x82, 0x05, 0x22, 0x03, 0xe5, 0x3a, 0x05, 0x9d, 0x78, 0x24, 0xc7, 0x78,
+	0xa6, 0x48, 0x30, 0x81, 0x85, 0x11, 0x02, 0x42, 0x12, 0x5c, 0xec, 0xf9, 0x69, 0x69, 0xa9, 0x45,
+	0x9e, 0x29, 0x12, 0xcc, 0x60, 0x39, 0x18, 0x17, 0x24, 0x93, 0x5c, 0x94, 0x9a, 0x58, 0x92, 0x5f,
+	0x24, 0xc1, 0xa2, 0xc0, 0xa8, 0xc1, 0x19, 0x04, 0xe3, 0x3a, 0x05, 0x9d, 0x78, 0x24, 0xc7, 0x78,
 	0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7,
 	0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x94, 0x45, 0x7a, 0x66, 0x49, 0x46, 0x69, 0x92, 0x5e, 0x72, 0x7e,
 	0xae, 0x7e, 0x46, 0x62, 0x5e, 0x71, 0x46, 0x21, 0xc2, 0x9b, 0xba, 0x10, 0x7f, 0x56, 0xa0, 0x7b,
 	0xbc, 0xa4, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d, 0xec, 0x5d, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff,
-	0xff, 0xc3, 0x0f, 0x21, 0x18, 0x26, 0x01, 0x00, 0x00,
+	0xff, 0x91, 0x04, 0x6b, 0x22, 0x26, 0x01, 0x00, 0x00,
 }
 
 func (m *HostingContract) Marshal() (dAtA []byte, err error) {
@@ -143,19 +143,15 @@ func (m *HostingContract) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x22
 	}
-	if len(m.OfferId) > 0 {
-		i -= len(m.OfferId)
-		copy(dAtA[i:], m.OfferId)
-		i = encodeVarintHostingContract(dAtA, i, uint64(len(m.OfferId)))
+	if m.OfferId != 0 {
+		i = encodeVarintHostingContract(dAtA, i, uint64(m.OfferId))
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x18
 	}
-	if len(m.InquiryId) > 0 {
-		i -= len(m.InquiryId)
-		copy(dAtA[i:], m.InquiryId)
-		i = encodeVarintHostingContract(dAtA, i, uint64(len(m.InquiryId)))
+	if m.InquiryId != 0 {
+		i = encodeVarintHostingContract(dAtA, i, uint64(m.InquiryId))
 		i--
-		dAtA[i] = 0x12
+		dAtA[i] = 0x10
 	}
 	if m.Id != 0 {
 		i = encodeVarintHostingContract(dAtA, i, uint64(m.Id))
@@ -185,13 +181,11 @@ func (m *HostingContract) Size() (n int) {
 	if m.Id != 0 {
 		n += 1 + sovHostingContract(uint64(m.Id))
 	}
-	l = len(m.InquiryId)
-	if l > 0 {
-		n += 1 + l + sovHostingContract(uint64(l))
+	if m.InquiryId != 0 {
+		n += 1 + sovHostingContract(uint64(m.InquiryId))
 	}
-	l = len(m.OfferId)
-	if l > 0 {
-		n += 1 + l + sovHostingContract(uint64(l))
+	if m.OfferId != 0 {
+		n += 1 + sovHostingContract(uint64(m.OfferId))
 	}
 	l = len(m.Creator)
 	if l > 0 {
@@ -255,10 +249,10 @@ func (m *HostingContract) Unmarshal(dAtA []byte) error {
 				}
 			}
 		case 2:
-			if wireType != 2 {
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field InquiryId", wireType)
 			}
-			var stringLen uint64
+			m.InquiryId = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowHostingContract
@@ -268,29 +262,16 @@ func (m *HostingContract) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.InquiryId |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthHostingContract
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthHostingContract
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.InquiryId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 3:
-			if wireType != 2 {
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field OfferId", wireType)
 			}
-			var stringLen uint64
+			m.OfferId = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowHostingContract
@@ -300,24 +281,11 @@ func (m *HostingContract) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.OfferId |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthHostingContract
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthHostingContract
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OfferId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)

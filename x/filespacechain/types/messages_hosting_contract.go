@@ -8,7 +8,7 @@ import (
 
 var _ sdk.Msg = &MsgCreateHostingContract{}
 
-func NewMsgCreateHostingContract(creator string, inquiryId string, offerId string) *MsgCreateHostingContract {
+func NewMsgCreateHostingContract(creator string, inquiryId uint64, offerId uint64) *MsgCreateHostingContract {
 	return &MsgCreateHostingContract{
 		Creator:   creator,
 		InquiryId: inquiryId,
@@ -26,7 +26,7 @@ func (msg *MsgCreateHostingContract) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdateHostingContract{}
 
-func NewMsgUpdateHostingContract(creator string, id uint64, inquiryId string, offerId string) *MsgUpdateHostingContract {
+func NewMsgUpdateHostingContract(creator string, id uint64, inquiryId uint64, offerId uint64) *MsgUpdateHostingContract {
 	return &MsgUpdateHostingContract{
 		Id:        id,
 		Creator:   creator,
