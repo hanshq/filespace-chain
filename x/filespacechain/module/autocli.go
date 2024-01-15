@@ -99,9 +99,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "CreateHostingInquiry",
-					Use:            "create-hosting-inquiry [fileEntryCid] [replicationRate] [escrowAmount] [endTime]",
+					Use:            "create-hosting-inquiry [fileEntryCid] [replicationRate] [escrowAmount] [endTime] [maxPricePerBlock]",
 					Short:          "Create HostingInquiry",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "fileEntryCid"}, {ProtoField: "replicationRate"}, {ProtoField: "escrowAmount"}, {ProtoField: "endTime"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "fileEntryCid"}, {ProtoField: "replicationRate"}, {ProtoField: "escrowAmount"}, {ProtoField: "endTime"}, {ProtoField: "maxPricePerBlock"}},
 				},
 				{
 					RpcMethod:      "UpdateHostingInquiry",
