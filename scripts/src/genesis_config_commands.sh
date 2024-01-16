@@ -1,10 +1,5 @@
 #! /bin/bash
 
-echo "PATH is $PATH"
-which rm
-which jq
-which sed
-
 tmp=$(mktemp)
 
 set_gov_params() {
@@ -105,4 +100,10 @@ enable_monitoring() {
   sed -ie 's/enabled-unsafe-cors.$/enabled-unsafe-cors = true/' "$APP_CONFIG_FILE"
   sed -ie 's/enable-unsafe-cors.$/enabled-unsafe-cors = true/' "$APP_CONFIG_FILE"
   sed -ie 's/cors_allowed_origins.$/cors_allowed_origins = ["*"]/' "$TENDERMINT_CONFIG_FILE"
+}
+
+enable_api(){
+  sed -i'' -e '/^\[api\]$/,/^\[/{s/^enable = false$/enable = true/}' "$APP_CONFIG_FILE"
+  sed -i'' -e '/^\[api\]$/,/^\[/{s/^enable = false$/enable = true/}' "$APP_CONFIG_FILE"
+  sed -i'' -e '/^\[api\]$/,/^\[/{s/^enabled-unsafe-cors = false$/enabled-unsafe-cors = true/}' "$APP_CONFIG_FILE"
 }

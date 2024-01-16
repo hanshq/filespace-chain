@@ -1,0 +1,47 @@
+---
+version: "2.0"
+services:
+  service-1:
+    image: hanshq/filespace-chain:12
+    expose:
+      - port: 26656
+        as: 26656
+        to:
+          - global: true
+      - port: 26657
+        as: 26657
+        to:
+          - global: true
+      - port: 1317
+        as: 1317
+        to:
+          - global: true
+      - port: 9090
+        as: 9090
+        to:
+          - global: true
+      - port: 9091
+        as: 9091
+        to:
+          - global: true
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        service-1:
+          denom: uakt
+          amount: 1000
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1

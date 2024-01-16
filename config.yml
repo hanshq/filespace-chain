@@ -1,16 +1,13 @@
 version: 1
-genesis:
-  app_state:
-    staking:
-      params:
-        bond_denom: "space"
 accounts:
   - name: alice
     coins:
       - 20000space
+      - 200000000stake
   - name: bob
     coins:
       - 10000space
+      - 100000000stake
 client:
   openapi:
     path: docs/static/openapi.yml
@@ -18,6 +15,7 @@ faucet:
   name: bob
   coins:
     - 5space
+    - 100000stake
 validators:
   - name: alice
-    bonded: 10000space
+    bonded: 100000000stake

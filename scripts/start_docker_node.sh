@@ -23,11 +23,11 @@ MONIKER_NAME=${MONIKER_NAME:-"local"}
 KEY_NAME=${KEY_NAME:-"local-user"}
 
 # Setting non-default ports to avoid port conflicts when running local rollapp
-SETTLEMENT_ADDR=${SETTLEMENT_ADDR:-"0.0.0.0:36657"}
-P2P_ADDRESS=${P2P_ADDRESS:-"0.0.0.0:36656"}
-GRPC_ADDRESS=${GRPC_ADDRESS:-"0.0.0.0:8090"}
-GRPC_WEB_ADDRESS=${GRPC_WEB_ADDRESS:-"0.0.0.0:8091"}
-API_ADDRESS=${API_ADDRESS:-"0.0.0.0:1318"}
+SETTLEMENT_ADDR=${SETTLEMENT_ADDR:-"0.0.0.0:26657"}
+P2P_ADDRESS=${P2P_ADDRESS:-"0.0.0.0:26656"}
+GRPC_ADDRESS=${GRPC_ADDRESS:-"0.0.0.0:9090"}
+GRPC_WEB_ADDRESS=${GRPC_WEB_ADDRESS:-"0.0.0.0:9091"}
+API_ADDRESS=${API_ADDRESS:-"0.0.0.0:1317"}
 JSONRPC_ADDRESS=${JSONRPC_ADDRESS:-"0.0.0.0:9545"}
 JSONRPC_WS_ADDRESS=${JSONRPC_WS_ADDRESS:-"0.0.0.0:9546"}
 
@@ -45,7 +45,7 @@ if ! command -v filespace-chaind > /dev/null; then
   fi
 fi
 
-
+rm -rf "$DATA_DIRECTORY"
 
 # Create and init dymension chain
 filespace-chaind init "$MONIKER_NAME" --chain-id="$CHAIN_ID"
@@ -53,7 +53,21 @@ filespace-chaind init "$MONIKER_NAME" --chain-id="$CHAIN_ID"
 # ---------------------------------------------------------------------------- #
 #                              Set configurations                              #
 # ---------------------------------------------------------------------------- #
-# [Remaining configuration commands remain unchanged]
+sed -i'' -e "/\[rpc\]/,+3 s/laddr *= .*/laddr = \"tcp:\/\/$SETTLEMENT_ADDR\"/" "$TENDERMINT_CONFIG_FILE"
+sed -i'' -e "/\[p2p\]/,+3 s/laddr *= .*/laddr = \"tcp:\/\/$P2P_ADDRESS\"/" "$TENDERMINT_CONFIG_FILE"
+
+sed -i'' -e "/\[grpc\]/,+6 s/address *= .*/address = \"$GRPC_ADDRESS\"/" "$APP_CONFIG_FILE"
+sed -i'' -e "/\[grpc-web\]/,+7 s/address *= .*/address = \"$GRPC_WEB_ADDRESS\"/" "$APP_CONFIG_FILE"
+sed -i'' -e "/\[json-rpc\]/,+6 s/address *= .*/address = \"$JSONRPC_ADDRESS\"/" "$APP_CONFIG_FILE"
+sed -i'' -e "/\[json-rpc\]/,+9 s/address *= .*/address = \"$JSONRPC_WS_ADDRESS\"/" "$APP_CONFIG_FILE"
+sed -i'' -e '/\[api\]/,+3 s/enable *= .*/enable = true/' "$APP_CONFIG_FILE"
+sed -i'' -e "/\[api\]/,+9 s/address *= .*/address = \"tcp:\/\/$API_ADDRESS\"/" "$APP_CONFIG_FILE"
+
+sed -i'' -e 's/^minimum-gas-prices *= .*/minimum-gas-prices = "0uspace"/' "$APP_CONFIG_FILE"
+
+sed -i'' -e "s/^chain-id *= .*/chain-id = \"$CHAIN_ID\"/" "$CLIENT_CONFIG_FILE"
+sed -i'' -e "s/^keyring-backend *= .*/keyring-backend = \"test\"/" "$CLIENT_CONFIG_FILE"
+sed -i'' -e "s/^node *= .*/node = \"tcp:\/\/$SETTLEMENT_ADDR\"/" "$CLIENT_CONFIG_FILE"
 
 # Execute configuration scripts
 set_consenus_params
@@ -64,7 +78,9 @@ set_EVM_params
 set_bank_denom_metadata
 set_epochs_params
 set_incentives_params
+enable_api
 
+cat $APP_CONFIG_FILE
 
 filespace-chaind keys add "$KEY_NAME" --keyring-backend test
 filespace-chaind genesis add-genesis-account "$(filespace-chaind keys show "$KEY_NAME" -a --keyring-backend test)" "$TOKEN_AMOUNT"

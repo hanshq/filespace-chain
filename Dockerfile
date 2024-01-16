@@ -33,7 +33,7 @@ ENV MONIKER_NAME=local
 
 RUN chmod +x ./scripts/*.sh
 
-EXPOSE 26656 26657 1317 9090
+EXPOSE 26656 26657 1317 9090 9091
 # Run simd by default, omit entrypoint to ease using container with simcli
 ENTRYPOINT [ "./scripts/start_docker_node.sh" ]
 
