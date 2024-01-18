@@ -1,60 +1,76 @@
-# filespacechain
-**filespacechain** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 
-## Get started
+# Project Name
 
-```
-ignite chain serve
-```
+Brief description of your project.
 
-`serve` command installs dependencies, builds, initializes, and starts your blockchain in development.
+## Getting Started
 
-### Configure
+These instructions will get your copy of the project up and running on your local machine for development and testing purposes.
 
-Your blockchain in development can be configured with `config.yml`. To learn more, see the [Ignite CLI docs](https://docs.ignite.com).
+### Prerequisites
 
-### Web Frontend
-
-Additionally, Ignite CLI offers both Vue and React options for frontend scaffolding:
-
-For a Vue frontend, use: `ignite scaffold vue`
-For a React frontend, use: `ignite scaffold react`
-These commands can be run within your scaffolded blockchain project. 
-
-
-For more information see the [monorepo for Ignite front-end development](https://github.com/ignite/web).
-
-## Release
-To release a new version of your blockchain, create and push a new tag with `v` prefix. A new draft release with the configured targets will be created.
+What things you need to install the software and how to install them.
 
 ```
-git tag v0.1
-git push origin v0.1
+Give examples
 ```
 
-After a draft release is created, make your final changes from the release page and publish it.
+### Installation
 
-### Install
-To install the latest version of your blockchain node's binary, execute the following command on your machine:
+A step-by-step series of examples that tell you how to get a development environment running.
 
 ```
-curl https://get.ignite.com/hanshq/filespace-chain@latest! | sudo bash
+Give examples
 ```
-`hanshq/filespace-chain` should match the `username` and `repo_name` of the Github repository to which the source code was pushed. Learn more about [the install process](https://github.com/allinbits/starport-installer).
 
-## Learn more
+## Usage
 
-- [Ignite CLI](https://ignite.com/cli)
-- [Tutorials](https://docs.ignite.com/guide)
-- [Ignite CLI docs](https://docs.ignite.com)
-- [Cosmos SDK docs](https://docs.cosmos.network)
-- [Developer Chat](https://discord.gg/ignite)
+### Pushing Docker Image
 
+To push the Docker image to a registry, use the `docker_push.sh` script with the version number as an argument.
 
-## Accounts
+```bash
+./scripts/src/docker_push.sh 22
+```
 
-✔ Added account alice with address cosmos1hvskpm38vwk63524garu3dzkjs82zjj2fhs5f0 and mnemonic:
-model minor arena van orient hundred scatter mass ecology cushion room able price tomato emotion scare fancy exit social donkey advance uncover black poem
+### Deploying on Akash
 
-✔ Added account bob with address cosmos1f99zm9j4xv577lwx7ejx5uqqyn50vcr2z9sess and mnemonic:
-garden immune receive term rude enable curtain federal manage globe fence since banana choose expand toss disease castle close earth orphan surface endless refuse
+To deploy on Akash, use the SDL file located at `./data/deploy/akash_deploy.sdl`.
+
+#### Steps for Akash Console
+
+1. **Add Owner Key**: Recover the owner's key in the Akash console.
+
+    ```bash
+    filespace-chaind keys add owner --recover
+    ```
+
+2. **Enable Validator**: Run the script to enable the validator.
+
+    ```bash
+    ./scripts/src/enable_validator.sh
+    ```
+
+## Contributing
+
+Please read [CONTRIBUTING.md](link-to-contributing-file) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](link-to-tags).
+
+## Authors
+
+* **Your Name** - *Initial work* - [YourUsername](link-to-your-profile)
+
+See also the list of [contributors](link-to-contributors) who participated in this project.
+
+## License
+
+This project is licensed under the XYZ License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc

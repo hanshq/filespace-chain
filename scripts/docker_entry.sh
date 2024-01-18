@@ -11,6 +11,7 @@ else
   exit 1
 fi
 
+
 # Set parameters
 DATA_DIRECTORY="$HOME/.filespace-chain"
 CONFIG_DIRECTORY="$DATA_DIRECTORY/config"
@@ -20,7 +21,9 @@ APP_CONFIG_FILE="$CONFIG_DIRECTORY/app.toml"
 GENESIS_FILE="$CONFIG_DIRECTORY/genesis.json"
 CHAIN_ID=${CHAIN_ID:-"filespace-chain"}
 MONIKER_NAME=${MONIKER_NAME:-"local"}
-KEY_NAME=${KEY_NAME:-"local-user"}
+WRITE_NEW_GENESIS=${WRITE_NEW_GENESIS:-"true"}
+ENABLE_API=${ENABLE_API:-"true"}
+OWNER_NECCESSARY=${OWNER_NECCESSARY:-"true"}
 
 # Setting non-default ports to avoid port conflicts when running local rollapp
 SETTLEMENT_ADDR=${SETTLEMENT_ADDR:-"0.0.0.0:26657"}
@@ -31,8 +34,8 @@ API_ADDRESS=${API_ADDRESS:-"0.0.0.0:1317"}
 JSONRPC_ADDRESS=${JSONRPC_ADDRESS:-"0.0.0.0:9545"}
 JSONRPC_WS_ADDRESS=${JSONRPC_WS_ADDRESS:-"0.0.0.0:9546"}
 
-TOKEN_AMOUNT=${TOKEN_AMOUNT:-"1000000000000000000000000uspace"} #1M SPACE (1e6 SPACE = 1e6 * 1e18 = 1e24 uspace)
-STAKING_AMOUNT=${STAKING_AMOUNT:-"670000000000000000000000uspace"} #67% is staked (inflation goal)
+TOKEN_AMOUNT=${TOKEN_AMOUNT:-"1000000000000000000000uspace"} #1M SPACE (1e6 SPACE = 1e6 * 1e18 = 1e24 uspace)
+STAKING_AMOUNT=${STAKING_AMOUNT:-"670000000000000000000uspace"} #67% is staked (inflation goal)
 
 # Validate binary exists
 
@@ -47,7 +50,7 @@ fi
 
 rm -rf "$DATA_DIRECTORY"
 
-# Create and init dymension chain
+# Create and init chain
 filespace-chaind init "$MONIKER_NAME" --chain-id="$CHAIN_ID"
 
 # ---------------------------------------------------------------------------- #
@@ -74,18 +77,68 @@ set_consenus_params
 set_gov_params
 set_hub_params
 set_misc_params
-set_EVM_params
 set_bank_denom_metadata
 set_epochs_params
 set_incentives_params
-enable_api
+add_peers
 
-cat $APP_CONFIG_FILE
+if [[ "$ENABLE_API" == "true" ]]; then
+  enable_api
+fi
 
-filespace-chaind keys add "$KEY_NAME" --keyring-backend test
-filespace-chaind genesis add-genesis-account "$(filespace-chaind keys show "$KEY_NAME" -a --keyring-backend test)" "$TOKEN_AMOUNT"
 
-filespace-chaind genesis gentx "$KEY_NAME" "$STAKING_AMOUNT" --chain-id "$CHAIN_ID" --keyring-backend test
-filespace-chaind genesis collect-gentxs
+if [[ "$OWNER_NECCESSARY" == "true" ]]; then
 
-filespace-chaind start --minimum-gas-prices 0space
+  CONTINUE_LOOP="true"
+
+  check_key() {
+      # Run the command and capture the output
+      KEY_INFO=$(filespace-chaind keys show owner 2>&1)
+
+      # Check if the output contains expected information
+      if [[ $KEY_INFO == *"address: space"* ]]; then
+          CONTINUE_LOOP="false"  # Exit the loop
+      else
+          echo "Key 'owner' not found."
+      fi
+  }
+
+  check_key
+  # Infinite loop
+  while [ "$CONTINUE_LOOP" == "true" ]; do
+      echo "Waiting 30s for key 'owner' to be set..."
+      sleep 30
+      check_key
+  done
+
+  echo "Key 'owner' found."
+
+else
+  filespace-chaind keys add owner
+fi
+
+
+if [[ "$WRITE_NEW_GENESIS" == "true" ]]; then
+
+  echo "Writing new genesis"
+
+  filespace-chaind genesis add-genesis-account "$(filespace-chaind keys show owner -a --keyring-backend test)" "$TOKEN_AMOUNT"
+  filespace-chaind genesis add-genesis-account space1r2rx6ugcehun2m0gla38lku6s39ycdy32pxu3k "$TOKEN_AMOUNT"
+  filespace-chaind genesis add-genesis-account space155k6k4exaqalvy93jthcnanmqvwgp46klxhwec "$TOKEN_AMOUNT"
+  filespace-chaind genesis add-genesis-account space1sgu7afscqh0hd34npl3p8lyfhjeyng0t6es6ww "$TOKEN_AMOUNT"
+  filespace-chaind genesis gentx owner "$TOKEN_AMOUNT" --chain-id "$CHAIN_ID" --keyring-backend test
+  filespace-chaind genesis collect-gentxs
+else
+  echo "Copy existing genesis"
+  if [ -f "./data/genesis/genesis.json" ]; then
+       cp ./data/genesis/genesis.json ~/.filespace-chain/config/genesis.json
+   else
+       echo "Genesis file not found"
+       exit 1
+   fi
+
+fi
+
+echo "Starting filespace"
+
+filespace-chaind start

@@ -35,12 +35,6 @@ set_consenus_params() {
     jq '.consensus_params["block"]["max_gas"] = "10000000"' "$GENESIS_FILE" > "$tmp" && mv "$tmp" "$GENESIS_FILE"
 }
 
-set_EVM_params() {
-  jq '.app_state["feemarket"]["params"]["no_base_fee"] = true' "$GENESIS_FILE" > "$tmp" && mv "$tmp" "$GENESIS_FILE"
-  jq '.app_state.evm.params.evm_denom = "uspace"' "$GENESIS_FILE" > "$tmp" && mv "$tmp" "$GENESIS_FILE"
-  jq '.app_state.evm.params.enable_create = false' "$GENESIS_FILE" > "$tmp" && mv "$tmp" "$GENESIS_FILE"
-}
-
 #Adding a "minute" epoch
 set_epochs_params() {
   jq '.app_state.epochs.epochs += [{
@@ -104,6 +98,11 @@ enable_monitoring() {
 
 enable_api(){
   sed -i'' -e '/^\[api\]$/,/^\[/{s/^enable = false$/enable = true/}' "$APP_CONFIG_FILE"
-  sed -i'' -e '/^\[api\]$/,/^\[/{s/^enable = false$/enable = true/}' "$APP_CONFIG_FILE"
   sed -i'' -e '/^\[api\]$/,/^\[/{s/^enabled-unsafe-cors = false$/enabled-unsafe-cors = true/}' "$APP_CONFIG_FILE"
 }
+
+add_peers(){
+  sed -i'' -e '/^\[p2p\]$/,/^\[/{s/^seeds = ""$/seeds = "'"${SEED_PEERS}"'"/}' "$TENDERMINT_CONFIG_FILE"
+  sed -i'' -e '/^\[p2p\]$/,/^\[/{s/^persistent_peers = ""$/persistent_peers = "'"${PERSISTANT_PEERS}"'"/}' "$TENDERMINT_CONFIG_FILE"
+}
+

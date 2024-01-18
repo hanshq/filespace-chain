@@ -1,0 +1,408 @@
+{
+  "app_name": "filespace-chaind",
+  "app_version": "0.0.5-2e4ca94b",
+  "genesis_time": "2024-01-18T22:30:42.97820545Z",
+  "chain_id": "filespacechain",
+  "initial_height": 1,
+  "app_hash": null,
+  "app_state": {
+    "auth": {
+      "params": {
+        "max_memo_characters": "256",
+        "tx_sig_limit": "7",
+        "tx_size_cost_per_byte": "100",
+        "sig_verify_cost_ed25519": "590",
+        "sig_verify_cost_secp256k1": "1000"
+      },
+      "accounts": [
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "space1r9u9ggcgm6jfej5zgrtv7f3u5d23dwe6cr682m",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "space1r2rx6ugcehun2m0gla38lku6s39ycdy32pxu3k",
+          "pub_key": null,
+          "account_number": "1",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "space155k6k4exaqalvy93jthcnanmqvwgp46klxhwec",
+          "pub_key": null,
+          "account_number": "2",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "space1sgu7afscqh0hd34npl3p8lyfhjeyng0t6es6ww",
+          "pub_key": null,
+          "account_number": "3",
+          "sequence": "0"
+        }
+      ]
+    },
+    "authz": {
+      "authorization": []
+    },
+    "bank": {
+      "params": {
+        "send_enabled": [],
+        "default_send_enabled": true
+      },
+      "balances": [
+        {
+          "address": "space1r9u9ggcgm6jfej5zgrtv7f3u5d23dwe6cr682m",
+          "coins": [
+            {
+              "denom": "uspace",
+              "amount": "1000000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "space1r2rx6ugcehun2m0gla38lku6s39ycdy32pxu3k",
+          "coins": [
+            {
+              "denom": "uspace",
+              "amount": "1000000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "space1sgu7afscqh0hd34npl3p8lyfhjeyng0t6es6ww",
+          "coins": [
+            {
+              "denom": "uspace",
+              "amount": "1000000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "space155k6k4exaqalvy93jthcnanmqvwgp46klxhwec",
+          "coins": [
+            {
+              "denom": "uspace",
+              "amount": "1000000000000000000000"
+            }
+          ]
+        }
+      ],
+      "supply": [
+        {
+          "denom": "uspace",
+          "amount": "4000000000000000000000"
+        }
+      ],
+      "denom_metadata": [
+        {
+          "description": "Denom metadata for space (uspace)",
+          "denom_units": [
+            {
+              "denom": "uspace",
+              "exponent": 0,
+              "aliases": []
+            },
+            {
+              "denom": "space",
+              "exponent": 18,
+              "aliases": []
+            }
+          ],
+          "base": "uspace",
+          "display": "space",
+          "name": "space",
+          "symbol": "space",
+          "uri": "",
+          "uri_hash": ""
+        }
+      ],
+      "send_enabled": []
+    },
+    "circuit": {
+      "account_permissions": [],
+      "disabled_type_urls": []
+    },
+    "consensus": null,
+    "crisis": {
+      "constant_fee": {
+        "denom": "uspace",
+        "amount": "1000"
+      }
+    },
+    "distribution": {
+      "params": {
+        "community_tax": "0.020000000000000000",
+        "base_proposer_reward": "0.000000000000000000",
+        "bonus_proposer_reward": "0.000000000000000000",
+        "withdraw_addr_enabled": true
+      },
+      "fee_pool": {
+        "community_pool": []
+      },
+      "delegator_withdraw_infos": [],
+      "previous_proposer": "",
+      "outstanding_rewards": [],
+      "validator_accumulated_commissions": [],
+      "validator_historical_rewards": [],
+      "validator_current_rewards": [],
+      "delegator_starting_infos": [],
+      "validator_slash_events": []
+    },
+    "epochs": {
+      "epochs": [
+        {
+          "identifier": "minute",
+          "start_time": "0001-01-01T00:00:00Z",
+          "duration": "60s",
+          "current_epoch": "0",
+          "current_epoch_start_time": "0001-01-01T00:00:00Z",
+          "epoch_counting_started": false,
+          "current_epoch_start_height": "0"
+        }
+      ]
+    },
+    "evidence": {
+      "evidence": []
+    },
+    "feegrant": {
+      "allowances": []
+    },
+    "filespacechain": {
+      "params": {},
+      "fileEntryList": [],
+      "fileEntryCount": "0",
+      "hostingInquiryList": [],
+      "hostingInquiryCount": "0",
+      "hostingContractList": [],
+      "hostingContractCount": "0",
+      "hostingOfferList": [],
+      "hostingOfferCount": "0"
+    },
+    "gamm": {
+      "params": {
+        "pool_creation_fee": [
+          {
+            "denom": "uspace"
+          }
+        ],
+        "enable_global_pool_fees": true
+      }
+    },
+    "genutil": {
+      "gen_txs": [
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "node2",
+                  "identity": "",
+                  "website": "",
+                  "security_contact": "",
+                  "details": ""
+                },
+                "commission": {
+                  "rate": "0.100000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "1",
+                "delegator_address": "",
+                "validator_address": "spacevaloper1r9u9ggcgm6jfej5zgrtv7f3u5d23dwe64zy96z",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "MwAof1bBFm+lBUVQKb6mVekZZ64SwJm5vlQrgWxCsWI="
+                },
+                "value": {
+                  "denom": "uspace",
+                  "amount": "1000000000000000000000"
+                }
+              }
+            ],
+            "memo": "f105d13abb3a4b61aec33d0a09e17cf2ff7d90bd@10.233.75.20:26656",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Ahb/q1w66FtGX4V98mjCHHQ7uzwXHa8JoQjqps2NS9bD"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_DIRECT"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            },
+            "tip": null
+          },
+          "signatures": [
+            "fjiT4CPzFDbF9/RKXf29DTaGefQStvJ7fOSeGwiGlQYTTic0ntC2s+Wiz5o3E6sw6TMt098MrqiSzm3EzcYA9w=="
+          ]
+        }
+      ]
+    },
+    "gov": {
+      "starting_proposal_id": "1",
+      "deposits": [],
+      "votes": [],
+      "proposals": [],
+      "deposit_params": {
+        "min_deposit": [
+          {
+            "denom": "uspace",
+            "amount": "10000000000"
+          }
+        ]
+      },
+      "voting_params": {
+        "voting_period": "1m"
+      },
+      "tally_params": null,
+      "params": {
+        "min_deposit": [
+          {
+            "denom": "stake",
+            "amount": "10000000"
+          }
+        ],
+        "max_deposit_period": "172800s",
+        "voting_period": "172800s",
+        "quorum": "0.334000000000000000",
+        "threshold": "0.500000000000000000",
+        "veto_threshold": "0.334000000000000000",
+        "min_initial_deposit_ratio": "0.000000000000000000",
+        "proposal_cancel_ratio": "0.500000000000000000",
+        "proposal_cancel_dest": "",
+        "expedited_voting_period": "86400s",
+        "expedited_threshold": "0.667000000000000000",
+        "expedited_min_deposit": [
+          {
+            "denom": "stake",
+            "amount": "50000000"
+          }
+        ],
+        "burn_vote_quorum": false,
+        "burn_proposal_deposit_prevote": false,
+        "burn_vote_veto": true,
+        "min_deposit_ratio": "0.010000000000000000"
+      },
+      "constitution": ""
+    },
+    "group": {
+      "group_seq": "0",
+      "groups": [],
+      "group_members": [],
+      "group_policy_seq": "0",
+      "group_policies": [],
+      "proposal_seq": "0",
+      "proposals": [],
+      "votes": []
+    },
+    "incentives": {
+      "params": {
+        "distr_epoch_identifier": "minute"
+      },
+      "lockable_durations": [
+        "60s"
+      ]
+    },
+    "mint": {
+      "minter": {
+        "inflation": "0.130000000000000000",
+        "annual_provisions": "0.000000000000000000"
+      },
+      "params": {
+        "mint_denom": "uspace",
+        "inflation_rate_change": "0.130000000000000000",
+        "inflation_max": "0.200000000000000000",
+        "inflation_min": "0.070000000000000000",
+        "goal_bonded": "0.670000000000000000",
+        "blocks_per_year": "6311520"
+      }
+    },
+    "params": null,
+    "rollapp": {
+      "params": {
+        "dispute_period_in_blocks": "2"
+      }
+    },
+    "runtime": null,
+    "slashing": {
+      "params": {
+        "signed_blocks_window": "10000",
+        "min_signed_per_window": "0.800000000000000000",
+        "downtime_jail_duration": "120s",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.0"
+      },
+      "signing_infos": [],
+      "missed_blocks": []
+    },
+    "staking": {
+      "params": {
+        "unbonding_time": "1814400s",
+        "max_validators": 100,
+        "max_entries": 7,
+        "historical_entries": 10000,
+        "bond_denom": "uspace",
+        "min_commission_rate": "0.000000000000000000"
+      },
+      "last_total_power": "0",
+      "last_validator_powers": [],
+      "validators": [],
+      "delegations": [],
+      "unbonding_delegations": [],
+      "redelegations": [],
+      "exported": false
+    },
+    "txfees": {
+      "basedenom": "uspace",
+      "params": {
+        "epoch_identifier": "minute"
+      }
+    },
+    "upgrade": {},
+    "vesting": {}
+  },
+  "consensus": {
+    "params": {
+      "block": {
+        "max_bytes": "22020096",
+        "max_gas": "-1"
+      },
+      "evidence": {
+        "max_age_num_blocks": "100000",
+        "max_age_duration": "172800000000000",
+        "max_bytes": "1048576"
+      },
+      "validator": {
+        "pub_key_types": [
+          "ed25519"
+        ]
+      },
+      "version": {
+        "app": "0"
+      },
+      "abci": {
+        "vote_extensions_enable_height": "0"
+      }
+    }
+  }
+}

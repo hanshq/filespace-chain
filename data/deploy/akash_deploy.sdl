@@ -2,7 +2,14 @@
 version: "2.0"
 services:
   service-1:
-    image: hanshq/filespace-chain:12
+    image: hanshq/filespace-chain:22
+    env:
+      - MONIKER_NAME=node2
+      - OWNER_NECCESSARY=true
+      - WRITE_NEW_GENESIS=false
+      - ENABLE_API=true
+      - SEED_PEERS=f105d13abb3a4b61aec33d0a09e17cf2ff7d90bd@provider.akashprovid.com:31575
+      - PERSISTANT_PEERS=cf7b2332f851b99c4364351244f42eb05a83df92@provider.d3akash.cloud:32557
     expose:
       - port: 26656
         as: 26656

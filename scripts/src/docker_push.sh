@@ -16,8 +16,18 @@ fi
 echo "Run container? (Y/n) "
 read -r answer
 if [ ! "$answer" != "${answer#[Nn]}" ] ;then
+
   sudo docker rm filespace-$TAG
-  sudo docker run -p 26656:26656 -p 26657:26657 -p 20080:1317 -p 29090:9090 -p 29091:9091 --name filespace-$TAG hanshq/filespace-chain:$TAG
+  sudo docker run \
+    -p 26656:26656 \
+    -p 26657:26657 \
+    -p 20080:1317 \
+    -p 29090:9090 \
+    -p 29091:9091 \
+    -e OWNER_NECCESSARY="true" \
+    -e WRITE_NEW_GENESIS="true" \
+    -e ENABLE_API="true" \
+    --name filespace-$TAG hanshq/filespace-chain:$TAG
 fi
 
 echo "Push container to repo? (Y/n) "

@@ -24,22 +24,22 @@ WORKDIR /app
 COPY ./build/ /usr/bin/
 
 COPY ./scripts/ ./scripts/
+COPY ./data/genesis/ ./data/genesis/
 
+RUN ls -la ./data/genesis/
 RUN ls -la ./scripts/
 
-ENV CHAIN_ID=local-testnet
-ENV KEY_NAME=local-user
-ENV MONIKER_NAME=local
+ENV CHAIN_ID=filespacechain
+#ENV KEY_NAME=node1
+#ENV MONIKER_NAME=node1
 
 RUN chmod +x ./scripts/*.sh
 
 EXPOSE 26656 26657 1317 9090 9091
 # Run simd by default, omit entrypoint to ease using container with simcli
-ENTRYPOINT [ "./scripts/start_docker_node.sh" ]
+ENTRYPOINT [ "./scripts/docker_entry.sh" ]
 
-# NOTE: to run this image, docker run -d -p 26657:26657 ./start_single_node.sh {{chain_id}} {{genesis_account}}
+# NOTE: to run this image, docker run -d -p 26657:26657 ./start_local_node.sh {{chain_id}} {{genesis_account}}
 
 #do this :) :
-
-#sudo docker run -p 26657:26657 --entrypoint ./start_single_node.sh b7fbf87ed5ab "filespace-01" "space1g2mljfe788k2q0fsyqkyvcwr05rmgu82cq79t2"
-#sudo docker run -p 26657:26657 --entrypoint ./start_single_node.sh hanshq/filespace-v01:latest "filespace-01" "space1g2mljfe788k2q0fsyqkyvcwr05rmgu82cq79t2"
+# ./scripts/docker_push.sh 12
