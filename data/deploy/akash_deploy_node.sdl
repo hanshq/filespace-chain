@@ -1,0 +1,65 @@
+---
+version: "2.0"
+services:
+  filespace:
+    image: hanshq/filespace-chain:44
+    expose:
+      - port: 26656
+        as: 26656
+        to:
+          - global: true
+      - port: 26657
+        as: 26657
+        to:
+          - global: true
+      - port: 1317
+        as: 1317
+        to:
+          - global: true
+      - port: 9090
+        as: 9090
+        to:
+          - global: true
+      - port: 9091
+        as: 9091
+        to:
+          - global: true
+    env:
+      - PERSISTENT_DATA_DIR=/persistent
+      - MONIKER_NAME=node3
+      - OWNER_NECCESSARY=true
+      - WRITE_NEW_GENESIS=false
+      - ENABLE_API=true
+      - SEED_PEERS=bd07b003e8ab7fa6d9f27782e05f5cc31f0049da@provider.akash-palmito.org:31861
+      - PERSISTANT_PEERS=bd07b003e8ab7fa6d9f27782e05f5cc31f0049da@provider.akash-palmito.org:31861,0f79ff56b5db76e263d1b1192def25f75626577d@provider.bdl.computer:32219
+    params:
+      storage:
+        data:
+          mount: /persistent/
+          readOnly: false
+profiles:
+  compute:
+    filespace:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 64Mi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        filespace:
+          denom: uakt
+          amount: 1000
+deployment:
+  filespace:
+    dcloud:
+      profile: filespace
+      count: 1

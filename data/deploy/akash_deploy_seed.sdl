@@ -1,15 +1,8 @@
 ---
 version: "2.0"
 services:
-  service-1:
-    image: hanshq/filespace-chain:22
-    env:
-      - MONIKER_NAME=node2
-      - OWNER_NECCESSARY=true
-      - WRITE_NEW_GENESIS=false
-      - ENABLE_API=true
-      - SEED_PEERS=f105d13abb3a4b61aec33d0a09e17cf2ff7d90bd@provider.akashprovid.com:31575
-      - PERSISTANT_PEERS=cf7b2332f851b99c4364351244f42eb05a83df92@provider.d3akash.cloud:32557
+  filespace:
+    image: hanshq/filespace-chain:37
     expose:
       - port: 26656
         as: 26656
@@ -31,24 +24,40 @@ services:
         as: 9091
         to:
           - global: true
+    env:
+      - PERSISTENT_DATA_DIR=/persistent
+      - MONIKER_NAME=coordinator
+      - OWNER_NECCESSARY=true
+      - WRITE_NEW_GENESIS=true
+      - ENABLE_API=true
+    params:
+      storage:
+        data:
+          mount: /persistent/
+          readOnly: false
 profiles:
   compute:
-    service-1:
+    filespace:
       resources:
         cpu:
           units: 0.5
         memory:
           size: 512Mi
         storage:
-          - size: 1Gi
+          - size: 64Mi
+          - name: data
+            size: 512Mi
+            attributes:
+              persistent: true
+              class: beta3
   placement:
     dcloud:
       pricing:
-        service-1:
+        filespace:
           denom: uakt
           amount: 1000
 deployment:
-  service-1:
+  filespace:
     dcloud:
-      profile: service-1
+      profile: filespace
       count: 1

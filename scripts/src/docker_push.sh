@@ -24,10 +24,14 @@ if [ ! "$answer" != "${answer#[Nn]}" ] ;then
     -p 20080:1317 \
     -p 29090:9090 \
     -p 29091:9091 \
-    -e OWNER_NECCESSARY="true" \
-    -e WRITE_NEW_GENESIS="true" \
+    -e PERSISTENT_DATA_DIR="/persistent" \
+    -e OWNER_NECCESSARY="false" \
+    -e WIPE_DATA="true" \
+    -e WRITE_NEW_GENESIS="false" \
     -e ENABLE_API="true" \
+    -v filespace-data:/persistent \
     --name filespace-$TAG hanshq/filespace-chain:$TAG
+
 fi
 
 echo "Push container to repo? (Y/n) "

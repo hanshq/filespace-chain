@@ -1,4 +1,4 @@
-
+set -x
 #--------------------validator---- --------------------------#
 # Get the validator key
 validator_key=$(filespace-chaind tendermint show-validator)
@@ -9,8 +9,10 @@ if [ -z "$validator_key" ]; then
   exit 1
 fi
 
-sed -i "s|\"pubkey\": {.*}|\"pubkey\": ${validator_key}|" /app/data/genesis/validator.json
+sed -i "s|\"pubkey\": .*|\"pubkey\": ${validator_key},|g" /app/data/genesis/validator.json
+
+cat /app/data/genesis/validator.json
 
 #-------------------------------------------------------------#
 
-filespace-chaind tx staking create-validator /app/data/genesis/validator.json --from=owner
+filespace-chaind tx staking create-validator /app/data/genesis/validator.json --chain-id filespacechain --from owner
