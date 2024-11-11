@@ -25,7 +25,7 @@ if [ ! "$answer" != "${answer#[Nn]}" ] ;then
     -p 29090:9090 \
     -p 29091:9091 \
     -e PERSISTENT_DATA_DIR="/persistent" \
-    -e OWNER_NECCESSARY="false" \
+    -e OWNER_NECCESSARY="true" \
     -e WIPE_DATA="true" \
     -e WRITE_NEW_GENESIS="false" \
     -e ENABLE_API="true" \

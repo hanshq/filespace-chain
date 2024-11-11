@@ -163,9 +163,9 @@ if [[ "$WRITE_NEW_GENESIS" == "true" ]]; then
   echo "Writing new genesis"
 
   filespace-chaind genesis add-genesis-account "$(filespace-chaind keys show owner -a --keyring-backend test)" "$TOKEN_AMOUNT"
-  filespace-chaind genesis add-genesis-account space1r2rx6ugcehun2m0gla38lku6s39ycdy32pxu3k "$TOKEN_AMOUNT"
-  filespace-chaind genesis add-genesis-account space155k6k4exaqalvy93jthcnanmqvwgp46klxhwec "$TOKEN_AMOUNT"
-  filespace-chaind genesis add-genesis-account space1sgu7afscqh0hd34npl3p8lyfhjeyng0t6es6ww "$TOKEN_AMOUNT"
+  filespace-chaind genesis add-genesis-account space1uqyssd3xeuaadlyqh6s3z2pszw36e6hxw092d3 "$TOKEN_AMOUNT"
+  filespace-chaind genesis add-genesis-account space16ry9r6dqlgv9gfjhzlfflx40345rdzlad2euqu "$TOKEN_AMOUNT"
+  filespace-chaind genesis add-genesis-account space1gwqqxk80qdqdejyxzvrjl8yflw22zflrz996nj "$TOKEN_AMOUNT"
   filespace-chaind genesis gentx owner "$TOKEN_AMOUNT" --chain-id "$CHAIN_ID" --keyring-backend test
   filespace-chaind genesis collect-gentxs
 else

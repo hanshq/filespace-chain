@@ -1,0 +1,39 @@
+ filespace-chaind init filespace --overwrite
+
+
+
+ filespace-chaind keys add val1
+ filespace-chaind genesis add-genesis-account val1 1000000000000000000000uspace
+ filespace-chaind genesis gentx val1 990000000000000000000uspace
+
+-> rename priv_validator_key.json to priv_validator_key_val1.json
+-> rename gentx to gentx-val1
+
+ filespace-chaind keys add val2
+ filespace-chaind genesis add-genesis-account val2 1000000000000000000000uspace
+ filespace-chaind genesis gentx val2990000000000000000000uspace
+
+-> rename priv_validator_key.json to priv_validator_key_val2.json
+-> rename gentx to gentx-val2
+
+
+ filespace-chaind keys add val3
+ filespace-chaind genesis add-genesis-account val3 1000000000000000000000uspace
+ filespace-chaind genesis gentx val3 990000000000000000000uspace
+
+-> rename priv_validator_key.json to priv_validator_key_val3.json
+-> rename gentx to gentx-val3
+
+filespace-chaind genesis collect-gentxs
+
+
+
+
+
+
+
+
+node1:
+
+
+filespace-chaind keys add owner --recover --keyring-backend test

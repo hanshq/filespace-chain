@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   filespace:
-    image: hanshq/filespace-chain:44
+    image: hanshq/filespace-chain:50
     expose:
       - port: 26656
         as: 26656
@@ -26,11 +26,11 @@ services:
           - global: true
     env:
       - PERSISTENT_DATA_DIR=/persistent
-      - MONIKER_NAME=node3
+      - MONIKER_NAME=node1
       - OWNER_NECCESSARY=true
       - WRITE_NEW_GENESIS=false
       - ENABLE_API=true
-      - SEED_PEERS=bd07b003e8ab7fa6d9f27782e05f5cc31f0049da@provider.akash-palmito.org:31861
+      - SEED_PEERS=0f7c7f20e107f72dfc3f2222fd697bdcbfd1482e@provider.akash.pro:32182
       - PERSISTANT_PEERS=bd07b003e8ab7fa6d9f27782e05f5cc31f0049da@provider.akash-palmito.org:31861,0f79ff56b5db76e263d1b1192def25f75626577d@provider.bdl.computer:32219
     params:
       storage:
