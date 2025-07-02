@@ -16,7 +16,9 @@
       "Bash(./filespace-chaind start:*)",
       "Bash(timeout:*)",
       "Bash(./filespace-chaind version)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(TERM=dumb ignite scaffold type testScaffold field1:string field2:uint64 field3:coin)",
+      "Bash(true)"
     ],
     "deny": []
   }

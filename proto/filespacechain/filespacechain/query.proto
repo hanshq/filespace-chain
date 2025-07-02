@@ -99,6 +99,7 @@ service Query {
   rpc ProviderStakeAll (QueryAllProviderStakeRequest) returns (QueryAllProviderStakeResponse) {
     option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_stake";
   }
+
   
   
 }
@@ -248,6 +249,7 @@ message QueryAllProviderStakeResponse {
   repeated ProviderStake                          provider_stake = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
+
 
 
 

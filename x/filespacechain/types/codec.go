@@ -28,6 +28,10 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgUpdateHostingOffer{},
 		&MsgDeleteHostingOffer{},
 	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgStakeForHosting{},
+		&MsgUnstakeFromHosting{},
+	)
 	// this line is used by starport scaffolding # 3
 
 	registry.RegisterImplementations((*sdk.Msg)(nil),
