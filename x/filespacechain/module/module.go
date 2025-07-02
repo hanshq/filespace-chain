@@ -145,7 +145,29 @@ func (AppModule) ConsensusVersion() uint64 { return 1 }
 
 // BeginBlock contains the logic that is automatically triggered at the beginning of each block.
 // The begin block implementation is optional.
-func (am AppModule) BeginBlock(_ context.Context) error {
+func (am AppModule) BeginBlock(ctx context.Context) error {
+	// Process periodic payments for active hosting contracts
+	err := am.keeper.ProcessPeriodicPayments(ctx)
+	if err != nil {
+		return err
+	}
+	
+	// Process expired contracts and pay completion bonuses
+	err = am.keeper.ProcessExpiredContracts(ctx)
+	if err != nil {
+		return err
+	}
+	
+	// Run cleanup operations every 1000 blocks (approximately every hour)
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	if sdkCtx.BlockHeight()%1000 == 0 {
+		err = am.keeper.PerformMaintenanceCleanup(ctx)
+		if err != nil {
+			// Log error but don't fail the block
+			am.keeper.Logger().Error("maintenance cleanup failed", "error", err)
+		}
+	}
+	
 	return nil
 }
 
@@ -202,6 +224,8 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 		in.StoreService,
 		in.Logger,
 		authority.String(),
+		in.AccountKeeper,
+		in.BankKeeper,
 	)
 	m := NewAppModule(
 		in.Cdc,

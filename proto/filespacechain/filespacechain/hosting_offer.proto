@@ -10,4 +10,5 @@ message HostingOffer {
   string region = 2; 
   cosmos.base.v1beta1.Coin pricePerBlock = 3 [(gogoproto.nullable) = false]; 
   string creator = 4;
+  uint64 inquiryId = 5;
 }

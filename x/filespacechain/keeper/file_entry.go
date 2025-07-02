@@ -109,3 +109,22 @@ func GetFileEntryIDBytes(id uint64) []byte {
 	bz = binary.BigEndian.AppendUint64(bz, id)
 	return bz
 }
+
+// GetFileEntryByCid returns a fileEntry from its CID
+func (k Keeper) GetFileEntryByCid(ctx context.Context, cid string) (val types.FileEntry, found bool) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.FileEntryKey))
+	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
+
+	defer iterator.Close()
+
+	for ; iterator.Valid(); iterator.Next() {
+		var fileEntry types.FileEntry
+		k.cdc.MustUnmarshal(iterator.Value(), &fileEntry)
+		if fileEntry.Cid == cid {
+			return fileEntry, true
+		}
+	}
+
+	return val, false
+}

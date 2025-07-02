@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(go mod tidy:*)",
+      "Bash(go test:*)",
+      "Bash(go build:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(buf generate:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(go mod:*)",
+      "Bash(ignite:*)",
+      "Bash(go list:*)",
+      "Bash(./filespace-chaind start:*)"
+    ],
+    "deny": []
+  }
+}

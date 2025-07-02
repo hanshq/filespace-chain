@@ -13,6 +13,19 @@ import (
 func (k msgServer) CreateHostingOffer(goCtx context.Context, msg *types.MsgCreateHostingOffer) (*types.MsgCreateHostingOfferResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Convert creator address for validation
+	creatorAddr, err := sdk.AccAddressFromBech32(msg.Creator)
+	if err != nil {
+		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidAddress, "invalid creator address")
+	}
+
+	// Validate that provider has sufficient stake before allowing offer creation
+	err = k.ValidateProviderStake(goCtx, creatorAddr)
+	if err != nil {
+		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidRequest, 
+			fmt.Sprintf("provider stake validation failed: %s", err.Error()))
+	}
+
 	var hostingOffer = types.HostingOffer{
 		Creator:       msg.Creator,
 		Region:        msg.Region,

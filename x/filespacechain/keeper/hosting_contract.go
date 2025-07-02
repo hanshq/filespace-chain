@@ -3,10 +3,12 @@ package keeper
 import (
 	"context"
 	"encoding/binary"
+	"fmt"
 
 	"cosmossdk.io/store/prefix"
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/hanshq/filespace-chain/x/filespacechain/types"
 )
 
@@ -108,4 +110,114 @@ func GetHostingContractIDBytes(id uint64) []byte {
 	bz = append(bz, []byte("/")...)
 	bz = binary.BigEndian.AppendUint64(bz, id)
 	return bz
+}
+
+// CompleteHostingContract marks a contract as completed and processes completion bonus
+func (k Keeper) CompleteHostingContract(ctx context.Context, contractId uint64) error {
+	contract, found := k.GetHostingContract(ctx, contractId)
+	if !found {
+		return fmt.Errorf("contract %d not found", contractId)
+	}
+	
+	// Check if contract has already reached its end block
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	currentHeight := uint64(sdkCtx.BlockHeight())
+	
+	if currentHeight < contract.EndBlock {
+		return fmt.Errorf("contract %d has not reached end block yet (current: %d, end: %d)", 
+			contractId, currentHeight, contract.EndBlock)
+	}
+	
+	// Check if completion bonus has already been paid
+	paymentHistory, found := k.GetPaymentHistory(ctx, contractId)
+	if found && paymentHistory.CompletionBonusPaid {
+		k.Logger().Info("completion bonus already paid for contract", "contract_id", contractId)
+		return nil
+	}
+	
+	// Process completion bonus
+	err := k.ProcessCompletionBonus(ctx, contractId)
+	if err != nil {
+		return fmt.Errorf("failed to process completion bonus for contract %d: %w", contractId, err)
+	}
+	
+	k.Logger().Info("hosting contract completed successfully", 
+		"contract_id", contractId,
+		"end_block", contract.EndBlock,
+		"current_block", currentHeight,
+	)
+	
+	return nil
+}
+
+// ProcessExpiredContracts processes all contracts that have passed their end block
+// This should be called periodically to clean up expired contracts and pay completion bonuses
+func (k Keeper) ProcessExpiredContracts(ctx context.Context) error {
+	contracts := k.GetAllHostingContract(ctx)
+	
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	currentHeight := uint64(sdkCtx.BlockHeight())
+	
+	for _, contract := range contracts {
+		// Skip contracts that haven't ended yet
+		if currentHeight < contract.EndBlock {
+			continue
+		}
+		
+		// Check if completion bonus has already been paid
+		paymentHistory, found := k.GetPaymentHistory(ctx, contract.Id)
+		if found && paymentHistory.CompletionBonusPaid {
+			continue
+		}
+		
+		// Process completion bonus for expired contracts
+		err := k.ProcessCompletionBonus(ctx, contract.Id)
+		if err != nil {
+			k.Logger().Error("failed to process completion bonus for expired contract",
+				"contract_id", contract.Id,
+				"error", err,
+			)
+			continue
+		}
+		
+		k.Logger().Info("processed completion bonus for expired contract",
+			"contract_id", contract.Id,
+			"end_block", contract.EndBlock,
+			"current_block", currentHeight,
+		)
+	}
+	
+	return nil
+}
+
+// GetActiveContracts returns all contracts that are currently active (within their duration)
+func (k Keeper) GetActiveContracts(ctx context.Context) (list []types.HostingContract) {
+	contracts := k.GetAllHostingContract(ctx)
+	
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	currentHeight := uint64(sdkCtx.BlockHeight())
+	
+	for _, contract := range contracts {
+		if currentHeight >= contract.StartBlock && currentHeight <= contract.EndBlock {
+			list = append(list, contract)
+		}
+	}
+	
+	return
+}
+
+// GetExpiredContracts returns all contracts that have passed their end block
+func (k Keeper) GetExpiredContracts(ctx context.Context) (list []types.HostingContract) {
+	contracts := k.GetAllHostingContract(ctx)
+	
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	currentHeight := uint64(sdkCtx.BlockHeight())
+	
+	for _, contract := range contracts {
+		if currentHeight > contract.EndBlock {
+			list = append(list, contract)
+		}
+	}
+	
+	return
 }

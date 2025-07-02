@@ -1,0 +1,63 @@
+{
+  "requirement_id": "2025-01-28-130431-hosting-provider-rewards",
+  "title": "Hosting Provider Rewards System",
+  "status": "complete",
+  "phase": "complete",
+  "created_at": "2025-01-28T13:04:31Z",
+  "updated_at": "2025-06-28T20:30:00Z",
+  "description": "Develop a comprehensive reward system for hosting providers to incentivize reliable file hosting services",
+  "tags": ["rewards", "hosting", "providers", "incentives", "economics"],
+  "priority": "high",
+  "estimated_effort": "medium",
+  "stakeholders": ["hosting_providers", "file_owners", "chain_validators"],
+  "related_modules": ["x/filespacechain", "hosting_contract", "hosting_offer", "bank", "staking"],
+  "progress": {
+    "discovery": {
+      "total": 5,
+      "answered": 5,
+      "complete": true
+    },
+    "expert_analysis": {
+      "total": 10,
+      "answered": 10,
+      "complete": true
+    },
+    "requirements_gathering": {
+      "complete": true
+    }
+  },
+  "summary": {
+    "completed_phases": ["discovery", "expert_analysis", "requirements_gathering"],
+    "key_decisions": [
+      "Two-tier payment structure (50% periodic, 50% completion bonus)",
+      "Immediate escrow locking upon hosting inquiry creation",
+      "Required provider staking with slashing for failures",
+      "Platform-wide pricing model based on byte-block-replication units",
+      "Trust-based system for MVP with future proof-of-storage integration"
+    ],
+    "next_steps": "Ready for implementation planning and development"
+  },
+  "key_requirements": {
+    "payment_structure": {
+      "periodic_payment": "50% paid periodically during active storage",
+      "completion_bonus": "50% paid upon successful contract completion"
+    },
+    "escrow": {
+      "timing": "Locked immediately on hosting inquiry creation",
+      "mechanism": "Integrate with bank module for fund locking"
+    },
+    "provider_staking": {
+      "requirement": "Providers must stake tokens before offering storage",
+      "slashing": "Percentage slashed for availability failures"
+    },
+    "pricing_model": {
+      "base_unit": "Platform-wide price per byte per block",
+      "calculation": "file_size × duration_blocks × replication_factor × base_price",
+      "replication": "Each replica provider receives equal payment"
+    },
+    "proof_of_storage": {
+      "status": "Required but out of scope for MVP",
+      "current": "Trust-based system for initial implementation"
+    }
+  }
+}

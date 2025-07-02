@@ -1,0 +1,37 @@
+{
+  "feature": "export-hosting-contracts-csv",
+  "created": "2025-01-28T12:50:53",
+  "status": "gathering-requirements",
+  "description": "Export hosting contract data to CSV format",
+  "phases": {
+    "requirements": {
+      "status": "in-progress",
+      "started": "2025-01-28T12:50:53",
+      "completed": null
+    },
+    "design": {
+      "status": "not-started",
+      "started": null,
+      "completed": null
+    },
+    "implementation": {
+      "status": "not-started",
+      "started": null,
+      "completed": null
+    },
+    "testing": {
+      "status": "not-started",
+      "started": null,
+      "completed": null
+    }
+  },
+  "files": [
+    "00-initial-request.md"
+  ],
+  "tags": [
+    "export",
+    "csv",
+    "hosting-contract",
+    "data-export"
+  ]
+}

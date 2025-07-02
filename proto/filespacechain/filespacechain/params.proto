@@ -11,5 +11,21 @@ message Params {
   option (amino.name) = "filespacechain/x/filespacechain/Params";
   option (gogoproto.equal) = true;
 
+  // Base price per byte per block for storage services
+  string base_price_per_byte_per_block = 1 [
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = false
+  ];
   
+  // Minimum stake required for hosting providers
+  string min_provider_stake = 2 [
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Fraction of stake to slash for provider failures (0.0 to 1.0)
+  string slashing_fraction = 3 [
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = false
+  ];
 }

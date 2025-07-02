@@ -1,0 +1,13 @@
+syntax = "proto3";
+package filespacechain.filespacechain;
+
+option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
+import "gogoproto/gogo.proto";
+import "cosmos/base/v1beta1/coin.proto";
+
+message PaymentHistory {
+  uint64 contract_id = 1;
+  cosmos.base.v1beta1.Coin total_paid = 2 [(gogoproto.nullable) = false];
+  uint64 last_payment_block = 3;
+  bool completion_bonus_paid = 4;
+}

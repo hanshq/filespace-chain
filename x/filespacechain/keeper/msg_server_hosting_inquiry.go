@@ -18,6 +18,39 @@ import (
 func (k msgServer) CreateHostingInquiry(goCtx context.Context, msg *types.MsgCreateHostingInquiry) (*types.MsgCreateHostingInquiryResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Get file entry to determine file size
+	fileEntry, found := k.GetFileEntryByCid(goCtx, msg.FileEntryCid)
+	if !found {
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("file entry with CID %s not found", msg.FileEntryCid))
+	}
+
+	// Calculate required escrow amount based on file size, duration, and replication
+	currentBlock := uint64(ctx.BlockHeight())
+	duration := msg.EndTime - currentBlock
+	
+	calculatedEscrow, err := k.CalculateEscrowAmount(goCtx, fileEntry.FileSize, duration, msg.ReplicationRate)
+	if err != nil {
+		return nil, errorsmod.Wrap(err, "failed to calculate escrow amount")
+	}
+
+	// Validate that provided escrow amount meets minimum requirement
+	if msg.EscrowAmount.IsLT(calculatedEscrow) {
+		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidRequest, 
+			fmt.Sprintf("escrow amount %s is less than required %s", msg.EscrowAmount.String(), calculatedEscrow.String()))
+	}
+
+	// Convert creator address
+	creatorAddr, err := sdk.AccAddressFromBech32(msg.Creator)
+	if err != nil {
+		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidAddress, "invalid creator address")
+	}
+
+	// Lock escrow funds
+	err = k.EscrowFunds(goCtx, creatorAddr, msg.EscrowAmount)
+	if err != nil {
+		return nil, errorsmod.Wrap(err, "failed to escrow funds")
+	}
+
 	var hostingInquiry = types.HostingInquiry{
 		Creator:         msg.Creator,
 		FileEntryCid:    msg.FileEntryCid,
@@ -31,11 +64,14 @@ func (k msgServer) CreateHostingInquiry(goCtx context.Context, msg *types.MsgCre
 		hostingInquiry,
 	)
 
+	// Store escrow tracking record
+	k.SetEscrowRecord(goCtx, id, msg.EscrowAmount, msg.Creator)
+
 	// Find the lowest hosting offers
 	lowestOffers, err := k.GetLowestHostingOffers(ctx, hostingInquiry)
 
 	if err != nil {
-		fmt.Printf("Could not find lowest offers %s\n")
+		fmt.Printf("Could not find lowest offers %s\n", err.Error())
 	}
 
 	for i, offer := range lowestOffers {
@@ -147,6 +183,29 @@ func (k msgServer) DeleteHostingInquiry(goCtx context.Context, msg *types.MsgDel
 	// Checks if the msg creator is the same as the current owner
 	if msg.Creator != val.Creator {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
+	}
+
+	// Check if there are any active contracts for this inquiry
+	// TODO: Add logic to check for active contracts and handle accordingly
+	// For now, we'll allow deletion and refund escrow
+
+	// Get escrow record
+	escrowRecord, found := k.GetEscrowRecord(goCtx, msg.Id)
+	if found {
+		// Convert creator address for refund
+		creatorAddr, err := sdk.AccAddressFromBech32(escrowRecord.Creator)
+		if err != nil {
+			return nil, errorsmod.Wrap(sdkerrors.ErrInvalidAddress, "invalid creator address in escrow record")
+		}
+
+		// Refund escrowed funds
+		err = k.RefundFunds(goCtx, creatorAddr, escrowRecord.Amount)
+		if err != nil {
+			return nil, errorsmod.Wrap(err, "failed to refund escrowed funds")
+		}
+
+		// Remove escrow record
+		k.RemoveEscrowRecord(goCtx, msg.Id)
 	}
 
 	k.RemoveHostingInquiry(ctx, msg.Id)

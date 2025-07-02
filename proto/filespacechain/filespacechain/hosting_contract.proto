@@ -8,4 +8,6 @@ message HostingContract {
   uint64 inquiryId = 2;
   uint64 offerId = 3;
   string creator = 4;
+  uint64 startBlock = 5;
+  uint64 endBlock = 6;
 }

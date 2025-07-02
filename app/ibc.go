@@ -125,6 +125,7 @@ func (app *App) registerIBCModules() {
 		app.MsgServiceRouter(),
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
+	app.ICAHostKeeper.WithQueryRouter(app.GRPCQueryRouter())
 	app.ICAControllerKeeper = icacontrollerkeeper.NewKeeper(
 		app.appCodec,
 		app.GetKey(icacontrollertypes.StoreKey),

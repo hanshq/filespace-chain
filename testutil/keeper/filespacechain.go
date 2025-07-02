@@ -38,6 +38,8 @@ func FilespacechainKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
 		runtime.NewKVStoreService(storeKey),
 		log.NewNopLogger(),
 		authority.String(),
+		nil, // Mock account keeper - tests will use nil
+		nil, // Mock bank keeper - tests will use nil
 	)
 
 	ctx := sdk.NewContext(stateStore, cmtproto.Header{}, false, log.NewNopLogger())

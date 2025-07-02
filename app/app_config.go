@@ -161,6 +161,7 @@ var (
 
 	preBlockers = []string{
 		upgradetypes.ModuleName,
+		authtypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/preBlockers
 	}
 
@@ -175,6 +176,8 @@ var (
 		{Account: ibctransfertypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner}},
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
+		{Account: filespacechainmoduletypes.ModuleName}, // For escrow funds
+		{Account: "hosting_bonded_pool", Permissions: []string{authtypes.Burner, "hosting"}}, // For provider staking
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 

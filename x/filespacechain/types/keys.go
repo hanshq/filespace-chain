@@ -38,3 +38,7 @@ const (
 	HostingOfferKey      = "HostingOffer/value/"
 	HostingOfferCountKey = "HostingOffer/count/"
 )
+
+const (
+	PaymentHistoryKey = "PaymentHistory/value/"
+)
