@@ -13,7 +13,9 @@
       "Bash(go mod:*)",
       "Bash(ignite:*)",
       "Bash(go list:*)",
-      "Bash(./filespace-chaind start:*)"
+      "Bash(./filespace-chaind start:*)",
+      "Bash(timeout:*)",
+      "Bash(./filespace-chaind version)"
     ],
     "deny": []
   }
