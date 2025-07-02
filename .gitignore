@@ -8,3 +8,15 @@ release/
 *.log
 data/accounts
 build/
+
+# Generated files
+filespace-chaind
+*.pulsar.go
+*_grpc.pb.go
+*.pb.go
+*.pb.gw.go
+api/
+docs/static/openapi.yml
+
+# Local development
+.claude/settings.local.json

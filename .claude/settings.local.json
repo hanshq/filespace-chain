@@ -13,7 +13,10 @@
       "Bash(go mod:*)",
       "Bash(ignite:*)",
       "Bash(go list:*)",
-      "Bash(./filespace-chaind start:*)"
+      "Bash(./filespace-chaind start:*)",
+      "Bash(rg:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": []
   }

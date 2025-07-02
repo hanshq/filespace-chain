@@ -324,18 +324,62 @@ filespace-chaind keys add owner --recover
   - `module/` - Module definition and genesis
   - `simulation/` - Simulation functions
 
-### Key Entities
+### Blockchain Stored Entities
 
-#### Core Entities
-1. **FileEntry**: File storage records with CID and metadata
-2. **HostingInquiry**: Requests for file hosting services with escrow
-3. **HostingOffer**: Responses to hosting inquiries from providers
-4. **HostingContract**: Automated agreements between parties
+Filespace Chain stores 8 different entity types on the blockchain to manage its decentralized file hosting marketplace:
 
-#### 🆕 Reward System Entities
-5. **EscrowRecord**: Tracks escrowed funds for each hosting inquiry
-6. **ProviderStake**: Records provider stake amounts and block heights
-7. **PaymentHistory**: Tracks payment progress and completion status
+#### Core Business Entities (Protobuf)
+
+1. **FileEntry**
+   - **Fields**: ID, CID, rootCID, parentCID, metadata, fileSize, creator
+   - **Storage**: `FileEntry/value/{id}` with auto-incrementing IDs
+   - **Purpose**: Represents files available for hosting
+
+2. **HostingInquiry** 
+   - **Fields**: ID, fileEntryCID, replicationRate, escrowAmount, endTime, creator, maxPricePerBlock
+   - **Storage**: `HostingInquiry/value/{id}` with auto-incrementing IDs
+   - **Purpose**: Requests for file hosting services
+
+3. **HostingOffer**
+   - **Fields**: ID, region, pricePerBlock, creator, inquiryID
+   - **Storage**: `HostingOffer/value/{id}` with auto-incrementing IDs
+   - **Purpose**: Provider responses to hosting inquiries
+
+4. **HostingContract**
+   - **Fields**: ID, inquiryID, offerID, creator, startBlock, endBlock
+   - **Storage**: `HostingContract/value/{id}` with auto-incrementing IDs
+   - **Purpose**: Agreements between inquiries and offers
+
+5. **PaymentHistory**
+   - **Fields**: contractID, totalPaid, lastPaymentBlock, completionBonusPaid
+   - **Storage**: `PaymentHistory/value/{contract_id}`
+   - **Purpose**: Tracks payments per contract
+
+#### Internal System Entities (JSON)
+
+6. **EscrowRecord**
+   - **Fields**: inquiryID, amount, creator
+   - **Storage**: Custom key `0x01` + inquiryID
+   - **Purpose**: Manages locked funds for inquiries
+
+7. **ProviderStake**
+   - **Fields**: provider, amount, height
+   - **Storage**: Custom key `0x02` + provider address
+   - **Purpose**: Provider stake requirements
+
+#### Module Configuration
+
+8. **Params**
+   - **Fields**: basePricePerBytePerBlock, minProviderStake, slashingFraction
+   - **Storage**: Single key `p_filespacechain`
+   - **Purpose**: Module-level configuration
+
+#### Entity Relationships
+- FileEntry ↔ HostingInquiry (via CID)
+- HostingInquiry → EscrowRecord (1:1)
+- HostingInquiry ↔ HostingOffer (1:many)
+- HostingContract → PaymentHistory (1:1)
+- Provider → ProviderStake (required for offers)
 
 ### Hosting Provider Reward System Flow
 
