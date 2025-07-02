@@ -11,3 +11,15 @@ message PaymentHistory {
   uint64 last_payment_block = 3;
   bool completion_bonus_paid = 4;
 }
+
+message EscrowRecord {
+  uint64 inquiry_id = 1;
+  cosmos.base.v1beta1.Coin amount = 2 [(gogoproto.nullable) = false];
+  string creator = 3;
+}
+
+message ProviderStake {
+  string provider = 1;
+  cosmos.base.v1beta1.Coin amount = 2 [(gogoproto.nullable) = false];
+  uint64 height = 3;
+}

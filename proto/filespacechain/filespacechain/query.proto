@@ -11,7 +11,7 @@ import "filespacechain/filespacechain/file_entry.proto";
 import "filespacechain/filespacechain/hosting_inquiry.proto";
 import "filespacechain/filespacechain/hosting_contract.proto";
 import "filespacechain/filespacechain/hosting_offer.proto";
-import "cosmos/base/v1beta1/coin.proto";
+import "filespacechain/filespacechain/payment.proto";
 
 option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
 
@@ -70,144 +70,36 @@ service Query {
   
   }
 
-  // Payment Analytics Queries
-  rpc PaymentAnalytics (QueryPaymentAnalyticsRequest) returns (QueryPaymentAnalyticsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_analytics";
-  }
-  
-  rpc PaymentsByContract (QueryPaymentsByContractRequest) returns (QueryPaymentsByContractResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payments/contract/{contract_id}";
-  }
-  
-  rpc PaymentsByProvider (QueryPaymentsByProviderRequest) returns (QueryPaymentsByProviderResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payments/provider/{provider}";
-  }
-  
-  rpc PaymentsByBlockRange (QueryPaymentsByBlockRangeRequest) returns (QueryPaymentsByBlockRangeResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payments/block_range/{start_block}/{end_block}";
-  }
-  
-  rpc RecentPayments (QueryRecentPaymentsRequest) returns (QueryRecentPaymentsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payments/recent/{limit}";
-  }
-  
-  rpc PendingPayments (QueryPendingPaymentsRequest) returns (QueryPendingPaymentsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payments/pending";
-  }
-  
-  rpc CompletedPayments (QueryCompletedPaymentsRequest) returns (QueryCompletedPaymentsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payments/completed";
-  }
-  
-  rpc PaymentDistribution (QueryPaymentDistributionRequest) returns (QueryPaymentDistributionResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_distribution";
-  }
-  
-  rpc ProviderPaymentSummary (QueryProviderPaymentSummaryRequest) returns (QueryProviderPaymentSummaryResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_payment_summary/{provider}";
-  }
-  
-  rpc PaymentTrends (QueryPaymentTrendsRequest) returns (QueryPaymentTrendsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_trends/{blocks}";
-  }
-  
-  rpc UnpaidContracts (QueryUnpaidContractsRequest) returns (QueryUnpaidContractsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/unpaid_contracts";
+  // Queries payment history for a specific contract.
+  rpc PaymentHistory (QueryPaymentHistoryRequest) returns (QueryPaymentHistoryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_history/{contract_id}";
   }
 
-  // Escrow and Staking Queries
-  rpc EscrowSummary (QueryEscrowSummaryRequest) returns (QueryEscrowSummaryResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow_summary";
-  }
-  
-  rpc EscrowByCreator (QueryEscrowByCreatorRequest) returns (QueryEscrowByCreatorResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow/creator/{creator}";
-  }
-  
-  rpc EscrowByInquiry (QueryEscrowByInquiryRequest) returns (QueryEscrowByInquiryResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow/inquiry/{inquiry_id}";
-  }
-  
-  rpc ActiveEscrow (QueryActiveEscrowRequest) returns (QueryActiveEscrowResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/active_escrow";
-  }
-  
-  rpc EscrowTotalsByDenom (QueryEscrowTotalsByDenomRequest) returns (QueryEscrowTotalsByDenomResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow_totals/{denom}";
-  }
-  
-  rpc StakingSummary (QueryStakingSummaryRequest) returns (QueryStakingSummaryResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/staking_summary";
-  }
-  
-  rpc StakeByProvider (QueryStakeByProviderRequest) returns (QueryStakeByProviderResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/stake/provider/{provider}";
-  }
-  
-  rpc ProvidersWithMinStake (QueryProvidersWithMinStakeRequest) returns (QueryProvidersWithMinStakeResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/providers_min_stake";
-  }
-  
-  rpc ProvidersByStakeRange (QueryProvidersByStakeRangeRequest) returns (QueryProvidersByStakeRangeResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/providers_stake_range/{start_block}/{end_block}";
-  }
-  
-  rpc StakeStatistics (QueryStakeStatisticsRequest) returns (QueryStakeStatisticsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/stake_statistics/{denom}";
-  }
-  
-  rpc TopProvidersByStake (QueryTopProvidersByStakeRequest) returns (QueryTopProvidersByStakeResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/top_providers_stake/{limit}";
-  }
-  
-  rpc ProviderStakeHistory (QueryProviderStakeHistoryRequest) returns (QueryProviderStakeHistoryResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_stake_history/{provider}";
-  }
-  
-  rpc ValidProviders (QueryValidProvidersRequest) returns (QueryValidProvidersResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/valid_providers";
+  // Queries all payment history records.
+  rpc PaymentHistoryAll (QueryAllPaymentHistoryRequest) returns (QueryAllPaymentHistoryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_history";
   }
 
-  // Business Logic Queries
-  rpc ActiveContracts (QueryActiveContractsRequest) returns (QueryActiveContractsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/active_contracts";
+  // Queries escrow record for a specific inquiry.
+  rpc EscrowRecord (QueryEscrowRecordRequest) returns (QueryEscrowRecordResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow/{inquiry_id}";
   }
-  
-  rpc ExpiredContracts (QueryExpiredContractsRequest) returns (QueryExpiredContractsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/expired_contracts";
+
+  // Queries all escrow records.
+  rpc EscrowRecordAll (QueryAllEscrowRecordRequest) returns (QueryAllEscrowRecordResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow";
   }
-  
-  rpc ContractsByProvider (QueryContractsByProviderRequest) returns (QueryContractsByProviderResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/contracts/provider/{provider}";
+
+  // Queries provider stake for a specific address.
+  rpc ProviderStake (QueryProviderStakeRequest) returns (QueryProviderStakeResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_stake/{provider}";
   }
-  
-  rpc ContractsByInquiryCreator (QueryContractsByInquiryCreatorRequest) returns (QueryContractsByInquiryCreatorResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/contracts/inquiry_creator/{creator}";
+
+  // Queries all provider stakes.
+  rpc ProviderStakeAll (QueryAllProviderStakeRequest) returns (QueryAllProviderStakeResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_stake";
   }
-  
-  rpc OffersByProvider (QueryOffersByProviderRequest) returns (QueryOffersByProviderResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/offers/provider/{provider}";
-  }
-  
-  rpc InquiriesByCreator (QueryInquiriesByCreatorRequest) returns (QueryInquiriesByCreatorResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/inquiries/creator/{creator}";
-  }
-  
-  rpc ProviderEarnings (QueryProviderEarningsRequest) returns (QueryProviderEarningsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_earnings/{provider}";
-  }
-  
-  rpc SystemStatistics (QuerySystemStatisticsRequest) returns (QuerySystemStatisticsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/system_statistics";
-  }
-  
-  rpc ContractDetails (QueryContractDetailsRequest) returns (QueryContractDetailsResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/contract_details/{contract_id}";
-  }
-  
-  rpc ProviderPerformance (QueryProviderPerformanceRequest) returns (QueryProviderPerformanceResponse) {
-    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_performance/{provider}";
-  }
+
   
   
 }
@@ -304,331 +196,60 @@ message QueryListHostingContractFromResponse {
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-// Payment Analytics Messages
-message QueryPaymentAnalyticsRequest {}
-
-message QueryPaymentAnalyticsResponse {
-  uint64 total_contracts = 1;
-  uint64 total_payments = 2;
-  repeated cosmos.base.v1beta1.Coin total_amount = 3 [(gogoproto.nullable) = false];
-  uint64 active_contracts = 4;
-  uint64 completed_contracts = 5;
-  repeated cosmos.base.v1beta1.Coin total_escrow = 6 [(gogoproto.nullable) = false];
-}
-
-message QueryPaymentsByContractRequest {
+// Payment History Queries
+message QueryPaymentHistoryRequest {
   uint64 contract_id = 1;
 }
 
-message PaymentInfo {
-  uint64 contract_id = 1;
-  string provider = 2;
-  repeated cosmos.base.v1beta1.Coin amount = 3 [(gogoproto.nullable) = false];
-  uint64 block_height = 4;
-  string payment_type = 5;
+message QueryPaymentHistoryResponse {
+  PaymentHistory payment_history = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryPaymentsByContractResponse {
-  repeated PaymentInfo payments = 1 [(gogoproto.nullable) = false];
+message QueryAllPaymentHistoryRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryPaymentsByProviderRequest {
-  string provider = 1;
+message QueryAllPaymentHistoryResponse {
+  repeated PaymentHistory                         payment_history = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-message QueryPaymentsByProviderResponse {
-  repeated PaymentInfo payments = 1 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin total_earnings = 2 [(gogoproto.nullable) = false];
-}
-
-message QueryPaymentsByBlockRangeRequest {
-  uint64 start_block = 1;
-  uint64 end_block = 2;
-}
-
-message QueryPaymentsByBlockRangeResponse {
-  repeated PaymentInfo payments = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryRecentPaymentsRequest {
-  uint64 limit = 1;
-}
-
-message QueryRecentPaymentsResponse {
-  repeated PaymentInfo payments = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryPendingPaymentsRequest {}
-
-message QueryPendingPaymentsResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryCompletedPaymentsRequest {}
-
-message QueryCompletedPaymentsResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryPaymentDistributionRequest {}
-
-message QueryPaymentDistributionResponse {
-  repeated cosmos.base.v1beta1.Coin total_distributed = 1 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin total_pending = 2 [(gogoproto.nullable) = false];
-  uint64 distribution_count = 3;
-}
-
-message QueryProviderPaymentSummaryRequest {
-  string provider = 1;
-}
-
-message QueryProviderPaymentSummaryResponse {
-  string provider = 1;
-  repeated cosmos.base.v1beta1.Coin total_earnings = 2 [(gogoproto.nullable) = false];
-  uint64 total_contracts = 3;
-  uint64 active_contracts = 4;
-  uint64 completed_contracts = 5;
-}
-
-message QueryPaymentTrendsRequest {
-  uint64 blocks = 1;
-}
-
-message QueryPaymentTrendsResponse {
-  repeated PaymentInfo recent_payments = 1 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin trend_total = 2 [(gogoproto.nullable) = false];
-}
-
-message QueryUnpaidContractsRequest {}
-
-message QueryUnpaidContractsResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-// Escrow and Staking Messages
-message QueryEscrowSummaryRequest {}
-
-message EscrowInfo {
-  uint64 inquiry_id = 1;
-  string creator = 2;
-  repeated cosmos.base.v1beta1.Coin amount = 3 [(gogoproto.nullable) = false];
-  uint64 locked_block = 4;
-  bool is_active = 5;
-}
-
-message QueryEscrowSummaryResponse {
-  repeated EscrowInfo escrows = 1 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin total_escrowed = 2 [(gogoproto.nullable) = false];
-  uint64 active_escrows = 3;
-}
-
-message QueryEscrowByCreatorRequest {
-  string creator = 1;
-}
-
-message QueryEscrowByCreatorResponse {
-  repeated EscrowInfo escrows = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryEscrowByInquiryRequest {
+// Escrow Queries
+message QueryEscrowRecordRequest {
   uint64 inquiry_id = 1;
 }
 
-message QueryEscrowByInquiryResponse {
-  EscrowInfo escrow = 1 [(gogoproto.nullable) = false];
+message QueryEscrowRecordResponse {
+  EscrowRecord escrow_record = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryActiveEscrowRequest {}
-
-message QueryActiveEscrowResponse {
-  repeated EscrowInfo escrows = 1 [(gogoproto.nullable) = false];
+message QueryAllEscrowRecordRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryEscrowTotalsByDenomRequest {
-  string denom = 1;
+message QueryAllEscrowRecordResponse {
+  repeated EscrowRecord                           escrow_record = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-message QueryEscrowTotalsByDenomResponse {
-  cosmos.base.v1beta1.Coin total_amount = 1 [(gogoproto.nullable) = false];
-  uint64 escrow_count = 2;
-}
-
-message QueryStakingSummaryRequest {}
-
-message StakeInfo {
-  string provider = 1;
-  repeated cosmos.base.v1beta1.Coin staked_amount = 2 [(gogoproto.nullable) = false];
-  uint64 stake_block = 3;
-  bool meets_minimum = 4;
-}
-
-message QueryStakingSummaryResponse {
-  repeated StakeInfo stakes = 1 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin total_staked = 2 [(gogoproto.nullable) = false];
-  uint64 valid_providers = 3;
-}
-
-message QueryStakeByProviderRequest {
+// Provider Stake Queries
+message QueryProviderStakeRequest {
   string provider = 1;
 }
 
-message QueryStakeByProviderResponse {
-  StakeInfo stake = 1 [(gogoproto.nullable) = false];
+message QueryProviderStakeResponse {
+  ProviderStake provider_stake = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryProvidersWithMinStakeRequest {}
-
-message QueryProvidersWithMinStakeResponse {
-  repeated StakeInfo providers = 1 [(gogoproto.nullable) = false];
+message QueryAllProviderStakeRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryProvidersByStakeRangeRequest {
-  uint64 start_block = 1;
-  uint64 end_block = 2;
+message QueryAllProviderStakeResponse {
+  repeated ProviderStake                          provider_stake = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
-message QueryProvidersByStakeRangeResponse {
-  repeated StakeInfo providers = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryStakeStatisticsRequest {
-  string denom = 1;
-}
-
-message QueryStakeStatisticsResponse {
-  cosmos.base.v1beta1.Coin total_staked = 1 [(gogoproto.nullable) = false];
-  cosmos.base.v1beta1.Coin average_stake = 2 [(gogoproto.nullable) = false];
-  cosmos.base.v1beta1.Coin min_stake = 3 [(gogoproto.nullable) = false];
-  cosmos.base.v1beta1.Coin max_stake = 4 [(gogoproto.nullable) = false];
-  uint64 provider_count = 5;
-}
-
-message QueryTopProvidersByStakeRequest {
-  uint64 limit = 1;
-}
-
-message QueryTopProvidersByStakeResponse {
-  repeated StakeInfo providers = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryProviderStakeHistoryRequest {
-  string provider = 1;
-}
-
-message QueryProviderStakeHistoryResponse {
-  repeated StakeInfo history = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryValidProvidersRequest {}
-
-message QueryValidProvidersResponse {
-  repeated StakeInfo providers = 1 [(gogoproto.nullable) = false];
-}
-
-// Business Logic Messages
-message QueryActiveContractsRequest {}
-
-message QueryActiveContractsResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryExpiredContractsRequest {}
-
-message QueryExpiredContractsResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryContractsByProviderRequest {
-  string provider = 1;
-}
-
-message QueryContractsByProviderResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryContractsByInquiryCreatorRequest {
-  string creator = 1;
-}
-
-message QueryContractsByInquiryCreatorResponse {
-  repeated HostingContract contracts = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryOffersByProviderRequest {
-  string provider = 1;
-}
-
-message QueryOffersByProviderResponse {
-  repeated HostingOffer offers = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryInquiriesByCreatorRequest {
-  string creator = 1;
-}
-
-message QueryInquiriesByCreatorResponse {
-  repeated HostingInquiry inquiries = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryProviderEarningsRequest {
-  string provider = 1;
-}
-
-message QueryProviderEarningsResponse {
-  string provider = 1;
-  repeated cosmos.base.v1beta1.Coin total_earnings = 2 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin pending_earnings = 3 [(gogoproto.nullable) = false];
-  uint64 total_contracts = 4;
-}
-
-message QuerySystemStatisticsRequest {}
-
-message QuerySystemStatisticsResponse {
-  uint64 total_file_entries = 1;
-  uint64 total_inquiries = 2;
-  uint64 total_offers = 3;
-  uint64 total_contracts = 4;
-  uint64 active_contracts = 5;
-  uint64 completed_contracts = 6;
-  repeated cosmos.base.v1beta1.Coin total_value_locked = 7 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin total_payments = 8 [(gogoproto.nullable) = false];
-  uint64 unique_providers = 9;
-  uint64 unique_clients = 10;
-}
-
-message QueryContractDetailsRequest {
-  uint64 contract_id = 1;
-}
-
-message ContractDetail {
-  HostingContract contract = 1 [(gogoproto.nullable) = false];
-  HostingInquiry inquiry = 2 [(gogoproto.nullable) = false];
-  HostingOffer offer = 3 [(gogoproto.nullable) = false];
-  repeated PaymentInfo payments = 4 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin total_paid = 5 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin remaining_escrow = 6 [(gogoproto.nullable) = false];
-  bool is_active = 7;
-  bool is_completed = 8;
-}
-
-message QueryContractDetailsResponse {
-  ContractDetail details = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryProviderPerformanceRequest {
-  string provider = 1;
-}
-
-message QueryProviderPerformanceResponse {
-  string provider = 1;
-  uint64 total_offers = 2;
-  uint64 accepted_offers = 3;
-  uint64 completed_contracts = 4;
-  uint64 failed_contracts = 5;
-  repeated cosmos.base.v1beta1.Coin total_earnings = 6 [(gogoproto.nullable) = false];
-  repeated cosmos.base.v1beta1.Coin current_stake = 7 [(gogoproto.nullable) = false];
-  string reputation_score = 8;
-}
 
 
 

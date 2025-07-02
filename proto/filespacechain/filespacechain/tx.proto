@@ -34,6 +34,8 @@ service Msg {
   rpc CreateHostingOffer    (MsgCreateHostingOffer   ) returns (MsgCreateHostingOfferResponse   );
   rpc UpdateHostingOffer    (MsgUpdateHostingOffer   ) returns (MsgUpdateHostingOfferResponse   );
   rpc DeleteHostingOffer    (MsgDeleteHostingOffer   ) returns (MsgDeleteHostingOfferResponse   );
+  rpc StakeForHosting       (MsgStakeForHosting      ) returns (MsgStakeForHostingResponse      );
+  rpc UnstakeFromHosting    (MsgUnstakeFromHosting   ) returns (MsgUnstakeFromHostingResponse   );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -180,4 +182,20 @@ message MsgDeleteHostingOffer {
 }
 
 message MsgDeleteHostingOfferResponse {}
+
+message MsgStakeForHosting {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  cosmos.base.v1beta1.Coin amount = 2 [(gogoproto.nullable) = false];
+}
+
+message MsgStakeForHostingResponse {}
+
+message MsgUnstakeFromHosting {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  cosmos.base.v1beta1.Coin amount = 2 [(gogoproto.nullable) = false];
+}
+
+message MsgUnstakeFromHostingResponse {}
 

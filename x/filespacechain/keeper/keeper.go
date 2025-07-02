@@ -135,8 +135,8 @@ func (k Keeper) RefundFunds(ctx context.Context, recipient sdk.AccAddress, amoun
 	return nil
 }
 
-// StakeForHosting stakes tokens for a hosting provider
-func (k Keeper) StakeForHosting(ctx context.Context, provider sdk.AccAddress, amount sdk.Coin) error {
+// StakeForHostingProvider stakes tokens for a hosting provider
+func (k Keeper) StakeForHostingProvider(ctx context.Context, provider sdk.AccAddress, amount sdk.Coin) error {
 	// Check if provider already has a stake
 	existingStake, found := k.GetProviderStake(ctx, provider.String())
 	if found {
