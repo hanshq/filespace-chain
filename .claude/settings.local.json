@@ -15,7 +15,8 @@
       "Bash(go list:*)",
       "Bash(./filespace-chaind start:*)",
       "Bash(timeout:*)",
-      "Bash(./filespace-chaind version)"
+      "Bash(./filespace-chaind version)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

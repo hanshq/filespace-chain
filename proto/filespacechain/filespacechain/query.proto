@@ -11,6 +11,7 @@ import "filespacechain/filespacechain/file_entry.proto";
 import "filespacechain/filespacechain/hosting_inquiry.proto";
 import "filespacechain/filespacechain/hosting_contract.proto";
 import "filespacechain/filespacechain/hosting_offer.proto";
+import "filespacechain/filespacechain/payment.proto";
 
 option go_package = "github.com/hanshq/filespace-chain/x/filespacechain/types";
 
@@ -67,6 +68,36 @@ service Query {
   rpc ListHostingContractFrom (QueryListHostingContractFromRequest) returns (QueryListHostingContractFromResponse) {
     option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/list_hosting_contract_from/{creator}";
   
+  }
+
+  // Queries payment history for a specific contract.
+  rpc PaymentHistory (QueryPaymentHistoryRequest) returns (QueryPaymentHistoryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_history/{contract_id}";
+  }
+
+  // Queries all payment history records.
+  rpc PaymentHistoryAll (QueryAllPaymentHistoryRequest) returns (QueryAllPaymentHistoryResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/payment_history";
+  }
+
+  // Queries escrow record for a specific inquiry.
+  rpc EscrowRecord (QueryEscrowRecordRequest) returns (QueryEscrowRecordResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow/{inquiry_id}";
+  }
+
+  // Queries all escrow records.
+  rpc EscrowRecordAll (QueryAllEscrowRecordRequest) returns (QueryAllEscrowRecordResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/escrow";
+  }
+
+  // Queries provider stake for a specific address.
+  rpc ProviderStake (QueryProviderStakeRequest) returns (QueryProviderStakeResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_stake/{provider}";
+  }
+
+  // Queries all provider stakes.
+  rpc ProviderStakeAll (QueryAllProviderStakeRequest) returns (QueryAllProviderStakeResponse) {
+    option (google.api.http).get = "/hanshq/filespace-chain/filespacechain/provider_stake";
   }
   
   
@@ -161,6 +192,60 @@ message QueryListHostingContractFromRequest {
 
 message QueryListHostingContractFromResponse {
   repeated HostingContract                        HostingContract = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Payment History Queries
+message QueryPaymentHistoryRequest {
+  uint64 contract_id = 1;
+}
+
+message QueryPaymentHistoryResponse {
+  PaymentHistory payment_history = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPaymentHistoryRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPaymentHistoryResponse {
+  repeated PaymentHistory                         payment_history = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Escrow Queries
+message QueryEscrowRecordRequest {
+  uint64 inquiry_id = 1;
+}
+
+message QueryEscrowRecordResponse {
+  EscrowRecord escrow_record = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllEscrowRecordRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllEscrowRecordResponse {
+  repeated EscrowRecord                           escrow_record = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Provider Stake Queries
+message QueryProviderStakeRequest {
+  string provider = 1;
+}
+
+message QueryProviderStakeResponse {
+  ProviderStake provider_stake = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllProviderStakeRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllProviderStakeResponse {
+  repeated ProviderStake                          provider_stake = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
